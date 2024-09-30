@@ -4,6 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { validationSchemaForEnv } from './config/environment-variables';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UsersModule } from './modules/users/users.module';
 
 const isProductionEnviroment = process.env.development !== 'production'
 @Module({
@@ -26,6 +27,7 @@ const isProductionEnviroment = process.env.development !== 'production'
         logging: true,
       }),
     }),
+    UsersModule
   ],
   controllers: [AppController],
   providers: [AppService],
