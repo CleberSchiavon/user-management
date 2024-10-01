@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
@@ -10,6 +10,8 @@ import { AuthService } from './modules/auth/auth.service';
 import { HealthController } from './modules/health/health.controller';
 import { HealthService } from './modules/health/health.service';
 import typeorm from './config/typeorm';
+import { UserController } from './modules/users/user.controller';
+import { HTTPLoggerInterceptor } from './middleware/http.logger.middleware';
 
 const isProductionEnviroment = process.env.development !== 'production'
 @Module({
@@ -27,7 +29,13 @@ const isProductionEnviroment = process.env.development !== 'production'
     UsersModule,
     AuthModule,
   ],
-  controllers: [AppController, HealthController, AuthController,],
+  controllers: [AppController, HealthController, AuthController, UserController],
   providers: [HealthService, AuthService],
 })
-export class AppModule {}
+
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(HTTPLoggerInterceptor).forRoutes('*');
+  }
+}
+
