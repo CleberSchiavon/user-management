@@ -1,20 +1,52 @@
-import { Injectable } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUserDto } from './dto/create-user-dto';
 import { Users } from './entities/user.entity';
 import { Repository } from 'typeorm';
+import { UpdateUserDto } from './dto/update-user-dto.dto';
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(Users)
     private readonly userRepository: Repository<Users>,
   ) {}
+  async findAll(): Promise<Users[]> {
+    return this.userRepository.find();
+  }
+  async findOneById(id: number): Promise<Users | undefined> {
+    const user = await this.userRepository.findOne({ where: { id } });
+    if (!user) {
+      throw new NotFoundException('Usuário não encontrado');
+    }
+    return user;
+  }
   async findOneByEmail(email: string): Promise<Users | undefined> {
-    return this.userRepository.findOne({ where: { email } });
+    const user = await this.userRepository.findOne({ where: { email } });
+    return user;
+  }
+  async findOneByUsername(username: string): Promise<Users | undefined> {
+    const user = await this.userRepository.findOne({ where: { username } });
+    return user;
   }
 
-  async findOneByUsername(username: string): Promise<Users | undefined> {
-    return this.userRepository.findOne({ where: { username } });
+  async update(id: number, updateUserDto: UpdateUserDto) {
+    const user = await this.userRepository.findOne({ where: { id } });
+    if (!user) {
+      return new NotFoundException('Usuário não encontrado');
+    }
+    if (updateUserDto.password) {
+      throw new UnauthorizedException(
+        'Por questões de segurança, a senha do usuário não pode ser modificada',
+      );
+    }
+    user.email = updateUserDto.email;
+    user.username = updateUserDto.username;
+    user.phoneNumber = updateUserDto.phoneNumber;
+    return await this.userRepository.save(user);
   }
   async create(createUserDto: CreateUserDto) {
     const user = new Users();
@@ -23,5 +55,12 @@ export class UsersService {
     user.password = createUserDto.password;
     user.phoneNumber = createUserDto.phoneNumber;
     return await this.userRepository.save(user);
+  }
+  async remove(id: number) {
+    const user = await this.userRepository.findOne({ where: { id } });
+    if (!user) {
+      throw new NotFoundException('Usuário não encontrado');
+    }
+    return await this.userRepository.remove(user);
   }
 }
