@@ -8,14 +8,25 @@ import { CreateUserDto } from './dto/create-user-dto';
 import { Users } from './entities/user.entity';
 import { Repository } from 'typeorm';
 import { UpdateUserDto } from './dto/update-user-dto.dto';
+import { PageDto } from '../pagination/dto/page.dto';
+import { BaseUser } from './dto/base-user-dto.dto';
+import { PageOptionsDto } from '../pagination/dto/PageOptions.dto';
+import { PageMetaDto } from '../pagination/dto/PageMeta.dto';
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(Users)
     private readonly userRepository: Repository<Users>,
   ) {}
-  async findAll(): Promise<Users[]> {
-    return this.userRepository.find();
+  async findAll(paginationOptions : PageOptionsDto): Promise<PageDto<Users>> {
+    const queryBuilder = this.userRepository.createQueryBuilder('user');
+
+    queryBuilder.orderBy("user.createdAt", paginationOptions .order).skip(paginationOptions .skip).take(paginationOptions .take)
+
+    const itemCount = await queryBuilder.getCount();
+    const { entities } = await queryBuilder.getRawAndEntities();
+    const metaDto = new PageMetaDto({itemCount, paginationOptions });
+    return new PageDto(entities, metaDto)
   }
   async findOneById(id: number): Promise<Users | undefined> {
     const user = await this.userRepository.findOne({ where: { id } });
