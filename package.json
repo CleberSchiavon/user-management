@@ -8,11 +8,17 @@
   ],
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev --parallel",
+    "dev": "nps run",
+    "dev:api": "nps run.api",
+    "dev:front": "nps run.web",
+    "prepare:api": "nps prepare.api",
+    "prepare:apiDocker": "nps prepare.apiDocker",
+    "prepare:web": "nps prepare.web",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
+    "nps": "^5.10.0",
     "prettier": "^3.0.0",
     "turbo": "1.10.12"
   },

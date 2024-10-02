@@ -10,13 +10,19 @@ module.exports = {
   scripts: {
     prepare: {
       default: `nps prepare.web prepare.api`,
-      web: `yarn`,
-      api: `nps prepare.docker typeorm.migrate.dev`,
+      web: `cd ${webPath} && yarn install && yarn run dev`,
+      api: `cd ${apiPath} && yarn install && yarn run dev`,
+      apiDocker: `nps prepare.docker typeorm.migrate.dev`,
       docker: "docker compose up -d",
       ci: {
         web: `npx turbo prune --scope=web && cd out && yarn install --frozen-lockfile`,
         api: `npx turbo prune --scope=api && cd out && yarn install --frozen-lockfile && nps typeorm.generate`,
       },
+    },
+    run: {
+      default: `nps run.web && run.api`,
+      web: `cd ${webPath} && yarn run dev`,
+      api: `cd ${apiPath} && yarn run dev`,
     },
     test: {
       default: `nps test.web test.api`,
