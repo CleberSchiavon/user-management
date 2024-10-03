@@ -13,9 +13,9 @@ WORKDIR /app
 COPY --from=builder /app/out/json/ .
 COPY --from=builder /app/out/yarn.lock ./yarn.lock
 COPY --from=builder /app/turbo.json ./turbo.json
-COPY --from=builder /app/apps/api/prisma ./prisma
+COPY --from=builder /app/apps/api/src/migrations ./
 RUN yarn install --frozen-lockfile
-RUN yarn prisma generate 
+RUN yarn migration:generate
 
 
 FROM node:16-alpine AS sourcer
