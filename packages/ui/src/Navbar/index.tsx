@@ -1,29 +1,31 @@
-import React, { ReactElement } from 'react'
+'use client'
+import React from 'react'
+import {AlignJustify} from 'lucide-react'
+import { defineHomeGreeting } from '../utils/defineHomeGreeting'
 
 export type DropdownNavbarOptions = {
   name: string
   onClick: () => void
-  icon: ReactElement
+  icon: React.ReactNode
 }
 
 interface INavbar {
   navbarTitle: string
-  optionsLogo: ReactElement
   dropdownOptions: DropdownNavbarOptions[]
 }
 
-const Navbar = ({ navbarTitle, optionsLogo, dropdownOptions }: INavbar) => {
-  const OptionsLogo = optionsLogo
+const Navbar = ({ navbarTitle, dropdownOptions }: INavbar) => {
+  const homeGreeting = defineHomeGreeting()
   return (
     <div className="navbar bg-white rounded-2xl px-4">
       <div className="flex-1">
         <p className="text-md text-black">
-          {navbarTitle} 👋🏼
+          {navbarTitle} | {homeGreeting} 👋🏼 
         </p>
       </div>
       <div className="dropdown dropdown-bottom dropdown-end">
         <div tabIndex={0} role="button" className="btn btn-square btn-ghost">
-          {OptionsLogo}
+          <AlignJustify />
         </div>
         <ul
           tabIndex={0}
