@@ -1,18 +1,13 @@
 "use client";
 import { create } from "zustand";
 import { createContext, useContext, useState } from "react";
+import { UserLoginReturn } from "@repo/types";
 
-interface User {
-  username?: string;
-  email?: string;
-  phoneNumber?: string;
-}
-
-const createAuthStore = (user?: User) =>
+const createAuthStore = (user?: UserLoginReturn) =>
   create<{
-    user?: User;
-    setUser: (user: User) => void;
-    updateUser: (updates: Partial<User>) => void;
+    user?: UserLoginReturn;
+    setUser: (user: UserLoginReturn) => void;
+    updateUser: (updates: Partial<UserLoginReturn>) => void;
   }>((set) => ({
     user,
     setUser(user) {
@@ -39,7 +34,7 @@ const AuthStoreProvider = ({
   user,
   children,
 }: {
-  user?: User;
+  user?: UserLoginReturn;
   children: React.ReactNode;
 }) => {
   const [store] = useState(() => createAuthStore(user));
