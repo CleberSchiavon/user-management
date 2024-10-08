@@ -1,14 +1,16 @@
 import * as bcrypt from 'bcrypt';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import {UserLoginReturn} from '@repo/types'
 import { UsersService } from '../users/users.service';
 import { CreateUserDto } from '~/modules/users/dto/create-user-dto';
+
 
 @Injectable()
 export class AuthService {
   constructor(private readonly usersService: UsersService, private readonly jwtService: JwtService) {}
 
-  async login(email: string, password: string) {
+  async login(email: string, password: string):Promise<UserLoginReturn> {
     const user = await this.usersService.findOneByEmail(email);
 
     if (!user) {
@@ -25,6 +27,10 @@ export class AuthService {
     const accessToken = await this.jwtService.signAsync(payload);
 
     return {
+      id: user.id,
+      username: user.username,
+      email: user.email,
+      phoneNumber: user.phoneNumber,
       access_token: accessToken,
     };
   }
