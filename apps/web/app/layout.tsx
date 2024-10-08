@@ -11,8 +11,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <html lang="en">
       <body className={inter.className}>
         <ToastContainer />
-          <div className="flex bg-white h-screen">
-            <div className="flex-[4] bg-gray-200 p-5">
+          <div className="flex h-screen">
+            <div className="flex-[4] p-5">
               {children}
             </div>
           </div>

@@ -10,7 +10,9 @@
     "paths": {
       "~/app/*": ["./app/*"],
       "~/public/*": ["./public/*"],
-      "~/client/*": ["./client/*"]
+      "~/client/*": ["./client/*"],
+      "~/components/*": ["./components/*"],
+      "@/*": ["./*"]
     },
     "baseUrl": "./"
   },

@@ -25,7 +25,6 @@ export class BaseUser {
 
   @ApiProperty()
   @IsNumber()
-  @IsPhoneNumber()
   phoneNumber: number;
 
   @ApiProperty()
