@@ -60,7 +60,7 @@ describe('AuthController', () => {
       const signupDto: BaseUser = {
         username: 'testuser',
         email: 'test@example.com',
-        phoneNumber: 1234567890,
+        phoneNumber: "1234567890",
         password: 'password123',
       };
 
@@ -93,7 +93,7 @@ describe('AuthController', () => {
       const signupDto: BaseUser = {
         username: 'testuser',
         email: 'test@example.com',
-        phoneNumber: 1234567890,
+        phoneNumber: "1234567890",
         password: 'password123',
       };
 

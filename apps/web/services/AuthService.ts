@@ -13,6 +13,7 @@ export const loginUser = async ({ data }: { data: LoginUserType }) => {
     return responseData;
   } catch (error) {
     if (error instanceof Error) {
+      toast.error(error.message);
       throw error;
     }
     const errorMessage = "Ocorreu um erro ao realizar o login"
@@ -28,6 +29,7 @@ export const registerUser = async ({ data }: { data: CreateUser }) => {
     return responseData;
   } catch (error) {
     if (error instanceof Error) {
+      toast.error(error.message);
       throw error;
     }
     const errorMessage = "Ocorreu um erro ao realizar o cadastro de usuário"

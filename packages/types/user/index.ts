@@ -2,7 +2,7 @@ export type User = {
     id: number;
     username: string;
     email: string;
-    phoneNumber: number;
+    phoneNumber: string;
     createdAt: Date;
     updatedAt: Date;
   };

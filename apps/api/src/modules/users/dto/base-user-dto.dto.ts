@@ -24,8 +24,10 @@ export class BaseUser {
   email: string;
 
   @ApiProperty()
-  @IsNumber()
-  phoneNumber: number;
+  @IsString()
+  @MinLength(10)
+  @MaxLength(14)
+  phoneNumber: string;
 
   @ApiProperty()
   @IsString()

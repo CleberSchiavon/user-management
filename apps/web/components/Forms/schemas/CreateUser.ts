@@ -4,7 +4,7 @@ const CreateUserSchema = z.object({
   username: z.string()
     .min(2, "Seu nome de usuário é obrigatório").max(20, "Seu nome de usuário deve ter no máximo 20 caracteres"),
   email: z.string().email("Digite um email válido"),
-  phoneNumber: z.number().min(1, "Seu número de telefone é obrigatório"),
+  phoneNumber: z.string().min(10, "Seu número de telefone é obrigatório"),
   password: z.string()
     .min(4, "Sua senha deve ter no mínimo 4 caracteres"),
   confirmPassword: z.string()

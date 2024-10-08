@@ -16,7 +16,6 @@ interface ILoginCard {
 
 export default function LoginCard({ setAuthCard }: ILoginCard) {
   const [loading, setLoading] = React.useState<boolean>(false);
-  const [loginError, setLoginError] = React.useState<string | null>(null);
   const {
     register,
     handleSubmit,
@@ -29,25 +28,19 @@ export default function LoginCard({ setAuthCard }: ILoginCard) {
   const router = useRouter()
   const onSubmit = async (data: LoginUser) => {
     setLoading(true);
-    setLoginError(null);
     try {
       const { access_token } = await loginUser({ data });
       localStorage.setItem("token", access_token);
       router.push('/dashboard')
-    } catch (error) {
-      if (error instanceof Error) {
-        setLoginError(error.message);
-      }
-    	}
+    }
       finally {
         setLoading(false);
       }
   };
   return (
-      <Card className="p-16 w-4/12">
+      <Card className="p-16">
         <CardHeader className="flex flex-col gap-3 justify-center items-center content-center">
           <h1 className="font-bold text-lg text-black">Área de Login</h1>
-          <p className="text-red-500 font-semibold">{loginError}</p>
         </CardHeader>
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
           <Input
