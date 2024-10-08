@@ -38,6 +38,21 @@ export const registerUser = async ({ data }: { data: CreateUser }) => {
   }
 };
 
+export const verifyToken = async ({token}: {token: string}) => {
+  try {
+    const { data: responseData } = await AxiosClient.post("/auth/verify-token", {
+      token: token
+    });
+
+    return responseData
+  } catch (error) {
+    if (error instanceof Error) {
+      toast.error('Token inválido, logue novamente');
+      throw error;
+    }
+  }
+}
+
 export const logoutUser = () => {
   localStorage.removeItem("token");
   toast.success("Logout realizado com sucesso");
