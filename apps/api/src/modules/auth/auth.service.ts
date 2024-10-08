@@ -41,4 +41,14 @@ export class AuthService {
     const newUser = await this.usersService.create(createUserDto);
     return newUser;
   }
+
+  async verifyToken(token: string) {
+    try {
+      const payload = await this.jwtService.verifyAsync(token);
+      return payload;
+    } catch (error) {
+      throw new UnauthorizedException('Invalid token.');
+    }
+  }
+  
 }
