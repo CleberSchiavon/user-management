@@ -7,7 +7,7 @@ interface UserStore {
   users: UserFetchResponse | null;
   setUsers: (users: UserFetchResponse) => void;
   updateUser: (newUsers: UserFetchResponse) => void;
-  fetchUsers: () => Promise<void>;
+  fetchUsers: (page:number, take:number) => Promise<void>;
 }
 
 export const userStore = create<UserStore>()(
@@ -22,8 +22,8 @@ export const userStore = create<UserStore>()(
         set((state) => ({
           users: { ...state.users, newUsers } as UserFetchResponse,
         })),
-      fetchUsers: async () => {
-        const response = await getUsers();
+      fetchUsers: async (page, take) => {
+        const response = await getUsers(page, take);
         set({ users: response });
       },
     }),

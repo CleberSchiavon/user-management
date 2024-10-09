@@ -7,7 +7,7 @@ export type AuthCardType = "login" | "register";
 const Homepage = () => {
   const [authCard, setAuthCard] = useState<AuthCardType>("login");
   return (
-    <section className="flex justify-center content-center items-center h-full">
+    <section className="flex justify-center content-center items-center h-screen">
       {authCard === "login" ? (
         <LoginCard setAuthCard={setAuthCard} />
       ) : (

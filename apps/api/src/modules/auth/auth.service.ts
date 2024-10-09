@@ -24,14 +24,16 @@ export class AuthService {
     }
     
     const payload = { sub: user.id, email: user.email };
-    const accessToken = await this.jwtService.signAsync(payload);
+    const accessToken = await this.jwtService.signAsync(payload, {
+      expiresIn: '1d'
+    });
 
     return {
       id: user.id,
       username: user.username,
       email: user.email,
       phoneNumber: user.phoneNumber,
-      access_token: accessToken,
+      access_token: accessToken
     };
   }
 

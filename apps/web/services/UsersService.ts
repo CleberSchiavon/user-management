@@ -2,22 +2,25 @@ import { User, UserFetchResponse } from "@repo/types";
 import { toast } from "react-toastify";
 import { AxiosClient } from "~/client/axiosClient";
 
-export const getUsers = async () => {
+export const getUsers = async (page = 1, take = 10) => {
     try {
         const { data: userLoginData } = await AxiosClient.get<UserFetchResponse>(
-          "/users/",
+            `/users/?page=${page}&take=${take}`
         );
-        toast.success("Busca realizada com sucesso");
+        toast.success("Busca realizada com sucesso", {
+            autoClose: 2000,
+            closeOnClick: true,
+        });
         return userLoginData;
-      } catch (error) {
+    } catch (error) {
         if (error instanceof Error) {
-          toast.error(error.message);
-          throw error;
+            toast.error(error.message);
+            throw error;
         }
         const errorMessage = "Ocorreu um erro ao realizar a busca de usuários";
         toast.error(errorMessage);
         throw new Error(errorMessage);
-      }
+    }
 }
 
 export const getUser = async ({ id }: { id: string }) => {
