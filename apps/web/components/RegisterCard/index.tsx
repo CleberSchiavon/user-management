@@ -41,7 +41,7 @@ export default function RegisterCard({ setAuthCard }: IRegisterCard) {
     }
   };
   return (
-    <Card className="p-16">
+    <Card>
       <CardHeader className="flex flex-col gap-3 justify-center items-center content-center">
         <h1 className="font-bold text-lg text-black">Área de Cadastro</h1>
       </CardHeader>

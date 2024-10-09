@@ -39,7 +39,7 @@ export default function LoginCard({ setAuthCard }: ILoginCard) {
     }
   };
   return (
-    <Card className="p-16">
+    <Card>
       <CardHeader className="flex flex-col gap-3 justify-center items-center content-center">
         <h1 className="font-bold text-lg text-black">Área de Login</h1>
       </CardHeader>
