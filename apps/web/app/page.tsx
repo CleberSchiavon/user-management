@@ -1,8 +1,5 @@
 "use client";
 import { useState } from "react";
-import Image from "next/image";
-import BackgroundImage from "../assets/images/login-background.jpg";
-import { Button } from "@/components/Button";
 import { LoginCard, RegisterCard } from "../components";
 
 export type AuthCardType = "login" | "register";

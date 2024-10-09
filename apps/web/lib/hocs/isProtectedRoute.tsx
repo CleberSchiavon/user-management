@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import { Loader } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { verifyToken } from "@/services/AuthService";
-import { useAuthStore } from "@/store/AuthStore";
+import {authStore} from "@/store/AuthStore";
 
 const isProtectedRoute = (WrappedComponent) => {
   return (props) => {
     const router = useRouter();
     const [verified, setVerified] = useState(false);
     const [loading, setLoading] = useState(true);
-    const {updateUser} = useAuthStore()((state) => state)
+    const {updateUser} = authStore((state) => state)
 
     useEffect(() => {
       const checkAuth = async () => {

@@ -4,6 +4,7 @@ import request from 'supertest';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { BaseUser } from '../users/dto/base-user-dto.dto';
+import { UserLoginReturn } from '@repo/types';
 
 describe('AuthController', () => {
   let app: INestApplication;
@@ -38,7 +39,13 @@ describe('AuthController', () => {
   describe('login', () => {
     it('should return a token on successful login', async () => {
       const mockLoginDto = { email: 'test@example.com', password: 'password' };
-      const mockToken = { access_token: 'mock_token' };
+      const mockToken: UserLoginReturn = {
+        id: 0,
+        username: 'username',
+        email: 'test@example.com',
+        phoneNumber: '1234567890',
+        access_token: 'mock_token',
+      };
 
       jest.spyOn(authService, 'login').mockResolvedValue(mockToken);
 
@@ -60,7 +67,7 @@ describe('AuthController', () => {
       const signupDto: BaseUser = {
         username: 'testuser',
         email: 'test@example.com',
-        phoneNumber: "1234567890",
+        phoneNumber: '1234567890',
         password: 'password123',
       };
 
@@ -93,7 +100,7 @@ describe('AuthController', () => {
       const signupDto: BaseUser = {
         username: 'testuser',
         email: 'test@example.com',
-        phoneNumber: "1234567890",
+        phoneNumber: '1234567890',
         password: 'password123',
       };
 

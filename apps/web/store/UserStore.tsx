@@ -1,49 +1,35 @@
-'use client'
-import { useState, createContext, useContext } from 'react'
-import { create } from 'zustand'
-import {User} from '@repo/types'
+import { getUsers } from "@/services/UsersService";
+import { PageMetaDto, User, UserFetchResponse } from "@repo/types";
+import { create } from "zustand";
+import { createJSONStorage, persist } from "zustand/middleware";
 
-const createStore = (
-  loading: boolean,
-  users?: User[],
-) =>
-  create<{
-    users?: User[]
-    loading: boolean
-    setLoading: (loading: boolean) => void
-    setUsers: (users: User[]) => void
-  }>((set) => ({
-    users,
-    setUsers(users) {
-      set({ users })
-    },
-    loading,
-    setLoading(loading) {
-      set({ loading })
-    },
-  }))
-
-const UserStoreContext = createContext<ReturnType<typeof createStore> | null>(null)
-
-export const useUserStore = () => {
-  if (!UserStoreContext)
-    throw new Error('useUserStore must be used within a UserStoreProvider')
-  return useContext(UserStoreContext)!
+interface UserStore {
+  users: UserFetchResponse | null;
+  setUsers: (users: UserFetchResponse) => void;
+  updateUser: (newUsers: UserFetchResponse) => void;
+  fetchUsers: () => Promise<void>;
 }
 
-const UserStoreProvider = ({
-  loading = true,
-  users,
-  children,
-}: {
-  users?: User[]
-  children: React.ReactNode
-  loading: boolean
-}) => {
-  const [store] = useState(() =>
-    createStore(loading, users),
+export const userStore = create<UserStore>()(
+  persist(
+    (set) => ({
+      users: {
+        data: [],
+        meta: {} as PageMetaDto,
+      },
+      setUsers: (users: UserFetchResponse) => set({ users }),
+      updateUser: (newUsers: UserFetchResponse) =>
+        set((state) => ({
+          users: { ...state.users, newUsers } as UserFetchResponse,
+        })),
+      fetchUsers: async () => {
+        const response = await getUsers();
+        set({ users: response });
+      },
+    }),
+    {
+      name: "user-storage",
+      storage: createJSONStorage(() => sessionStorage),
+    }
   )
-  return <UserStoreContext.Provider value={store}>{children}</UserStoreContext.Provider>
-}
-
-export default UserStoreProvider
+);

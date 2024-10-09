@@ -7,7 +7,7 @@ import { Button, Input } from "~/components/index";
 import { Card, CardFooter, CardHeader } from "../Card";
 import { loginUser } from "@/services/AuthService";
 import { useRouter } from "next/navigation";
-import { useAuthStore } from "@/store/AuthStore";
+import { authStore } from "@/store/AuthStore";
 
 interface ILoginCard {
   setAuthCard: React.Dispatch<React.SetStateAction<AuthCardType>>;
@@ -15,7 +15,7 @@ interface ILoginCard {
 
 export default function LoginCard({ setAuthCard }: ILoginCard) {
   const [loading, setLoading] = React.useState<boolean>(false);
-  const { setUser } = useAuthStore()((state) => state);
+  const {setUser} = authStore((state) => state)
 
   const {
     register,

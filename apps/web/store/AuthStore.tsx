@@ -1,49 +1,32 @@
-"use client";
-import { create } from "zustand";
-import { createContext, useContext, useState } from "react";
 import { UserLoginReturn } from "@repo/types";
+import { create } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
 
-const createAuthStore = (user?: UserLoginReturn) =>
-  create<{
-    user?: UserLoginReturn;
-    setUser: (user: UserLoginReturn) => void;
-    updateUser: (updates: Partial<UserLoginReturn>) => void;
-  }>((set) => ({
-    user,
-    setUser(user) {
-      set({ user });
-    },
-    updateUser(updates) {
-      set((state) => ({ user: { ...state.user, ...updates } }));
-    },
-  }));
+interface AuthStore {
+  user: UserLoginReturn;
+  setUser: (user: UserLoginReturn) => void;
+  updateUser: (user: UserLoginReturn) => void;
+}
 
-const AuthStoreContext = createContext<ReturnType<
-  typeof createAuthStore
-> | null>(null);
-
-export const useAuthStore = () => {
-  const context = useContext(AuthStoreContext);
-  if (!context) {
-    throw new Error("useAuthStore must be used within an AuthStoreProvider");
-  }
-  return context;
-};
-
-const AuthStoreProvider = ({
-  user,
-  children,
-}: {
-  user?: UserLoginReturn;
-  children: React.ReactNode;
-}) => {
-  const [store] = useState(() => createAuthStore(user));
-
-  return (
-    <AuthStoreContext.Provider value={store}>
-      {children}
-    </AuthStoreContext.Provider>
-  );
-};
-
-export default AuthStoreProvider;
+export const authStore = create<AuthStore>()(
+  persist(
+    (set) => ({
+      user: {
+        access_token: undefined,
+        email: undefined,
+        id: undefined,
+        username: undefined,
+        phoneNumber: undefined,
+      },
+      setUser: (user: UserLoginReturn) => set({ user }),
+      updateUser: (newUser: unknown) =>
+        set((state) => ({
+          user: { ...state.user, newUser } as UserLoginReturn,
+        })),
+    }),
+    {
+      name: "auth-storage",
+      storage: createJSONStorage(() => sessionStorage),
+    }
+  )
+);
