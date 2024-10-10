@@ -34,7 +34,7 @@ export const LayoutProvider: React.FC<{ children: ReactNode }> = ({
       deleteUserModal,
       setDeleteUserModal,
     }),
-    [editUserModal, deleteUserModal]
+    [editUserModal, deleteUserModal],
   );
 
   return (

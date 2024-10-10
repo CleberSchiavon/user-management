@@ -27,6 +27,6 @@ export const authStore = create<AuthStore>()(
     {
       name: "auth-storage",
       storage: createJSONStorage(() => sessionStorage),
-    }
-  )
+    },
+  ),
 );

@@ -1,4 +1,4 @@
-const nestApiEslint = require("@repo/configs/eslint/nest-api.js");
+const nestApiEslint = require('@repo/configs/eslint/nest-api.js');
 
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
@@ -6,6 +6,6 @@ module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: './tsconfig.json', 
+    project: './tsconfig.json',
   },
 };

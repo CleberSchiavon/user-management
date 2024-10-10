@@ -12,7 +12,7 @@ export const loginUser = async ({
   try {
     const { data: userLoginData } = await AxiosClient.post<UserLoginReturn>(
       "/auth/login",
-      data
+      data,
     );
     toast.success("Login realizado com sucesso");
     return userLoginData;
@@ -49,7 +49,7 @@ export const verifyToken = async ({ token }: { token: string }) => {
       "/auth/verify-token",
       {
         token: token,
-      }
+      },
     );
 
     return responseData;

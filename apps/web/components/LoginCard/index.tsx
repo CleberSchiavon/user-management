@@ -15,7 +15,7 @@ interface ILoginCard {
 
 export default function LoginCard({ setAuthCard }: ILoginCard) {
   const [loading, setLoading] = React.useState<boolean>(false);
-  const {setUser} = authStore((state) => state)
+  const { setUser } = authStore((state) => state);
 
   const {
     register,

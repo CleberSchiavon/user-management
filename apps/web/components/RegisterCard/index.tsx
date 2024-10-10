@@ -29,7 +29,7 @@ export default function RegisterCard({ setAuthCard }: IRegisterCard) {
     setLoading(true);
     try {
       await registerUser({ data }).then(() =>
-        toast.success("Usuário registrado com sucesso, entrando....")
+        toast.success("Usuário registrado com sucesso, entrando...."),
       );
       const { access_token } = await loginUser({
         data: { email: data.email, password: data.password },

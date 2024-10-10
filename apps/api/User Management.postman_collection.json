@@ -1,323 +1,284 @@
 {
-	"info": {
-		"_postman_id": "cc23cdd4-7411-4878-9232-df6de2705d8c",
-		"name": "User Management",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "15420903"
-	},
-	"item": [
-		{
-			"name": "Auth",
-			"item": [
-				{
-					"name": "SignUp",
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"username\": \"teste35\",\r\n  \"email\": \"cleber4@teste.net.br\",\r\n  \"password\": \"Password123!\",\r\n  \"phoneNumber\": 3195959,\r\n  \"confirmPassword\": \"Password123!\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:5002/auth/signup",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "5002",
-							"path": [
-								"auth",
-								"signup"
-							]
-						}
-					},
-					"response": [
-						{
-							"name": "SignUp",
-							"originalRequest": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n  \"username\": \"teste35\",\r\n  \"email\": \"cleber4@teste.net.br\",\r\n  \"password\": \"Password123!\",\r\n  \"phoneNumber\": 3195959,\r\n  \"confirmPassword\": \"Password123!\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:5002/auth/signup",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "5002",
-									"path": [
-										"auth",
-										"signup"
-									]
-								}
-							},
-							"status": "Not Found",
-							"code": 404,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "X-Powered-By",
-									"value": "Express"
-								},
-								{
-									"key": "Content-Type",
-									"value": "application/json; charset=utf-8"
-								},
-								{
-									"key": "Content-Length",
-									"value": "75"
-								},
-								{
-									"key": "ETag",
-									"value": "W/\"4b-QfVZJCsd9gGbWvZh6mqcfTi6MdA\""
-								},
-								{
-									"key": "Date",
-									"value": "Tue, 01 Oct 2024 06:33:28 GMT"
-								},
-								{
-									"key": "Connection",
-									"value": "keep-alive"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=5"
-								}
-							],
-							"cookie": [],
-							"body": "{\n    \"message\": \"Usuário não encontrado\",\n    \"error\": \"Not Found\",\n    \"statusCode\": 404\n}"
-						}
-					]
-				},
-				{
-					"name": "Login",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test('ValidateToken', function() {\r",
-									"    pm.response.to.have.status(200);\r",
-									"    pm.environment.set('bearer_token', pm.response.json()['access_token']);\r",
-									"});\r",
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"email\": \"cleber4@teste.net.br\",\r\n  \"password\": \"Password123!\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:5002/auth/login",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "5002",
-							"path": [
-								"auth",
-								"login"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Health",
-			"item": [
-				{
-					"name": "GET API Health",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:5002/health",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "5002",
-							"path": [
-								"health"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "User",
-			"item": [
-				{
-					"name": "Get All User",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{bearer_token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:5002/users/",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "5002",
-							"path": [
-								"users",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get User by Id",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{bearer_token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:5002/users/6",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "5002",
-							"path": [
-								"users",
-								"6"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete User by Id",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{bearer_token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:5002/users/6",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "5002",
-							"path": [
-								"users",
-								"6"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update User by Id",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{bearer_token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"cleberschiavon\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:5002/users/6",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "5002",
-							"path": [
-								"users",
-								"6"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		}
-	],
-	"variable": [
-		{
-			"key": "bearer_token",
-			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsImVtYWlsIjoiY2xlYmVyMkB0ZXN0ZS5uZXQuYnIiLCJpYXQiOjE3Mjc3NjQwNzEsImV4cCI6MTcyNzc2NDEzMX0._v399qnMLm4g-fMzoL3HD657igS96jraOQIz2mlNz8w"
-		}
-	]
+  "info": {
+    "_postman_id": "cc23cdd4-7411-4878-9232-df6de2705d8c",
+    "name": "User Management",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "15420903"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "SignUp",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"username\": \"teste35\",\r\n  \"email\": \"cleber4@teste.net.br\",\r\n  \"password\": \"Password123!\",\r\n  \"phoneNumber\": 3195959,\r\n  \"confirmPassword\": \"Password123!\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5002/auth/signup",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5002",
+              "path": ["auth", "signup"]
+            }
+          },
+          "response": [
+            {
+              "name": "SignUp",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"username\": \"teste35\",\r\n  \"email\": \"cleber4@teste.net.br\",\r\n  \"password\": \"Password123!\",\r\n  \"phoneNumber\": 3195959,\r\n  \"confirmPassword\": \"Password123!\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5002/auth/signup",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "5002",
+                  "path": ["auth", "signup"]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "75"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"4b-QfVZJCsd9gGbWvZh6mqcfTi6MdA\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Tue, 01 Oct 2024 06:33:28 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Usuário não encontrado\",\n    \"error\": \"Not Found\",\n    \"statusCode\": 404\n}"
+            }
+          ]
+        },
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('ValidateToken', function() {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "    pm.environment.set('bearer_token', pm.response.json()['access_token']);\r",
+                  "});\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"cleber4@teste.net.br\",\r\n  \"password\": \"Password123!\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5002/auth/login",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5002",
+              "path": ["auth", "login"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Health",
+      "item": [
+        {
+          "name": "GET API Health",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5002/health",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5002",
+              "path": ["health"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "Get All User",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearer_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5002/users/",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5002",
+              "path": ["users", ""]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get User by Id",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearer_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5002/users/6",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5002",
+              "path": ["users", "6"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete User by Id",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearer_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5002/users/6",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5002",
+              "path": ["users", "6"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update User by Id",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearer_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"username\": \"cleberschiavon\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5002/users/6",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5002",
+              "path": ["users", "6"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "bearer_token",
+      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsImVtYWlsIjoiY2xlYmVyMkB0ZXN0ZS5uZXQuYnIiLCJpYXQiOjE3Mjc3NjQwNzEsImV4cCI6MTcyNzc2NDEzMX0._v399qnMLm4g-fMzoL3HD657igS96jraOQIz2mlNz8w"
+    }
+  ]
 }

@@ -1,4 +1,4 @@
-import axios, { AxiosError } from 'axios'
+import axios, { AxiosError } from "axios";
 
 export interface ApiResponse<T> {
   data: T;
@@ -7,21 +7,18 @@ export interface ApiResponse<T> {
 
 const AxiosClient = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
-})
+});
 
 AxiosClient.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token')
+  const token = localStorage.getItem("token");
   if (token) {
-    config.headers.Authorization = `Bearer ${token}`
+    config.headers.Authorization = `Bearer ${token}`;
   }
-  return config
-})
+  return config;
+});
 
 const isAxiosError = (error: unknown): error is AxiosError => {
   return axios.isAxiosError(error);
 };
 
-export {
-  AxiosClient,
-  isAxiosError,
-}
+export { AxiosClient, isAxiosError };
