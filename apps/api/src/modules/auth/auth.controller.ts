@@ -39,4 +39,16 @@ export class AuthController {
     };
     return this.authService.signUp(payload);
   }
+
+  @Public()
+  @HttpCode(HttpStatus.OK)
+  @Post('verify-token')
+  @ApiOperation({ summary: 'Verify Token Route' })
+  @ApiResponse({
+    status: 200,
+    type: [BaseUser],
+  })
+  verifyToken(@Body() body: { token: string }) {
+    return this.authService.verifyToken(body.token);
+  }
 }

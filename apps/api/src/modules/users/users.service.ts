@@ -9,7 +9,6 @@ import { Users } from './entities/user.entity';
 import { Repository } from 'typeorm';
 import { UpdateUserDto } from './dto/update-user-dto.dto';
 import { PageDto } from '../pagination/dto/page.dto';
-import { BaseUser } from './dto/base-user-dto.dto';
 import { PageOptionsDto } from '../pagination/dto/PageOptions.dto';
 import { PageMetaDto } from '../pagination/dto/PageMeta.dto';
 @Injectable()
@@ -18,15 +17,25 @@ export class UsersService {
     @InjectRepository(Users)
     private readonly userRepository: Repository<Users>,
   ) {}
-  async findAll(paginationOptions : PageOptionsDto): Promise<PageDto<Users>> {
+  async findAll(paginationOptions: PageOptionsDto): Promise<PageDto<Users>> {
     const queryBuilder = this.userRepository.createQueryBuilder('user');
 
-    queryBuilder.orderBy("user.createdAt", paginationOptions .order).skip(paginationOptions .skip).take(paginationOptions .take)
+    queryBuilder
+      .select([
+        'user.id',
+        'user.username',
+        'user.email',
+        'user.createdAt',
+        'user.updatedAt',
+      ])
+      .orderBy('user.createdAt', paginationOptions.order)
+      .skip(paginationOptions.skip)
+      .take(paginationOptions.take);
 
     const itemCount = await queryBuilder.getCount();
     const { entities } = await queryBuilder.getRawAndEntities();
-    const metaDto = new PageMetaDto({itemCount, paginationOptions });
-    return new PageDto(entities, metaDto)
+    const metaDto = new PageMetaDto({ itemCount, paginationOptions });
+    return new PageDto(entities, metaDto);
   }
   async findOneById(id: number): Promise<Users | undefined> {
     const user = await this.userRepository.findOne({ where: { id } });
@@ -47,16 +56,41 @@ export class UsersService {
   async update(id: number, updateUserDto: UpdateUserDto) {
     const user = await this.userRepository.findOne({ where: { id } });
     if (!user) {
-      return new NotFoundException('Usuário não encontrado');
+      throw new NotFoundException('Usuário não encontrado');
     }
-    if (updateUserDto.password) {
-      throw new UnauthorizedException(
-        'Por questões de segurança, a senha do usuário não pode ser modificada',
-      );
+    const existingUserWithEmail = await this.userRepository.findOne({
+      where: { email: updateUserDto.email },
+    });
+    const existingUserWithUsername = await this.userRepository.findOne({
+      where: { username: updateUserDto.username },
+    });
+    const existingUserWithPhoneNumber = await this.userRepository.findOne({
+      where: { phoneNumber: updateUserDto.phoneNumber },
+    });
+
+    if (existingUserWithEmail && existingUserWithEmail.id !== user.id) {
+      throw new UnauthorizedException('Email já cadastrado');
     }
-    user.email = updateUserDto.email;
-    user.username = updateUserDto.username;
-    user.phoneNumber = updateUserDto.phoneNumber;
+    if (existingUserWithUsername && existingUserWithUsername.id !== user.id) {
+      throw new UnauthorizedException('Username já cadastrado');
+    }
+    if (
+      existingUserWithPhoneNumber &&
+      existingUserWithPhoneNumber.id !== user.id
+    ) {
+      throw new UnauthorizedException('Telefone já cadastrado');
+    }
+
+    if (updateUserDto.email) {
+      user.email = updateUserDto.email;
+    }
+    if (updateUserDto.username) {
+      user.username = updateUserDto.username;
+    }
+    if (updateUserDto.phoneNumber) {
+      user.phoneNumber = updateUserDto.phoneNumber;
+    }
+
     return await this.userRepository.save(user);
   }
   async create(createUserDto: CreateUserDto) {

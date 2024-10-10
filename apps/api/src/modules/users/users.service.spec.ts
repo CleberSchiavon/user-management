@@ -34,7 +34,7 @@ describe('UsersService', () => {
         email: 'test@example.com',
         username: 'testuser',
         password: 'password',
-        phoneNumber: 31987641179,
+        phoneNumber: "31987641179",
         createdAt: new Date(),
         updatedAt: new Date(),
       };
@@ -67,7 +67,7 @@ describe('UsersService', () => {
         email: 'test@example.com',
         username: 'testuser',
         password: 'password',
-        phoneNumber: 31987641179,
+        phoneNumber: "31987641179",
         createdAt: new Date(),
         updatedAt: new Date(),
       };
@@ -99,7 +99,7 @@ describe('UsersService', () => {
         username: 'testuser',
         email: 'test@example.com',
         password: 'StrongPassword123!',
-        phoneNumber: 31987641179,
+        phoneNumber: "31987641179",
         createdAt: new Date(),
       };
       const mockUser = { id: 1, updatedAt: new Date(), ...createUserDto };
@@ -120,7 +120,7 @@ describe('UsersService', () => {
         username: 'testuser',
         email: 'test@example.com',
         password: 'StrongPassword123!',
-        phoneNumber: 31987641179,
+        phoneNumber: "31987641179",
         createdAt: new Date(),
       };
       jest
@@ -134,7 +134,7 @@ describe('UsersService', () => {
         username: createUserDto.username,
         email: createUserDto.email,
         password: createUserDto.password,
-        phoneNumber: 31987641179,
+        phoneNumber: "31987641179",
       });
     });
   });
