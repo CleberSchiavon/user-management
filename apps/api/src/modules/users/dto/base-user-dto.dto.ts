@@ -1,8 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
   IsEmail,
-  IsNumber,
-  IsPhoneNumber,
+  IsOptional,
   IsString,
   IsStrongPassword,
   MaxLength,
@@ -23,11 +22,10 @@ export class BaseUser {
   @IsEmail()
   email: string;
 
-  @ApiProperty()
+  @ApiProperty({ required: false })
+  @IsOptional()
   @IsString()
-  @MinLength(10)
-  @MaxLength(14)
-  phoneNumber: string;
+  phoneNumber?: string;
 
   @ApiProperty()
   @IsString()
