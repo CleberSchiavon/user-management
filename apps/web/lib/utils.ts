@@ -6,8 +6,8 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const defineHomeGreeting = () => {
-  let currentDate = new Date();
-  let currentHour = currentDate.getHours();
+  const currentDate = new Date();
+  const currentHour = currentDate.getHours();
   if (currentHour >= 3 && currentHour < 12) {
     return "Bom dia";
   } else if (currentHour >= 12 && currentHour < 18) {

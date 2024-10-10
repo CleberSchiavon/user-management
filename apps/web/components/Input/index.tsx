@@ -47,6 +47,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       labelClassName,
       label,
       type,
+      onChange,
       errorMessage,
       ...props
     }: InputProps,
@@ -70,6 +71,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             className,
           )}
           ref={ref}
+          onChange={onChange}
           {...props}
         />
         <p className="text-xs text-red-500 font-semibold">{errorMessage}</p>

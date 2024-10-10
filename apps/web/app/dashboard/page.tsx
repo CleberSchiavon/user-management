@@ -17,7 +17,8 @@ const DashboardPage = () => {
     setDeleteUserModal,
   } = useLayoutContext();
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(5);
+
+  const itemsPerPage = 5
 
   const fetchTableData = async ({ page, itemsPerPage }) => {
     await fetchUsers(page, itemsPerPage);
