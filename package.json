@@ -1,6 +1,6 @@
 {
   "name": "turborepo-basic-shared",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "workspaces": [
     "apps/*",
@@ -26,7 +26,6 @@
     "clean-repo": "bash ./scripts/clean-repo.sh",
     "changelog": "standard-version"
   },
-
   "devDependencies": {
     "@commitlint/cli": "^17.6.3",
     "@commitlint/config-conventional": "^17.6.3",
