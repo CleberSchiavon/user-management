@@ -4,15 +4,13 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [0.0.6](https://github.com/CleberSchiavon/user-management/compare/v0.0.5...v0.0.6) (2024-10-10)
 
-
 ### Bug Fixes
 
-* **root:** adding eslint and tsconfig in root project ([b4d9868](https://github.com/CleberSchiavon/user-management/commit/b4d98680d9a147a64001b55dc82b45afee2f0b34))
-
+- **root:** adding eslint and tsconfig in root project ([b4d9868](https://github.com/CleberSchiavon/user-management/commit/b4d98680d9a147a64001b55dc82b45afee2f0b34))
 
 ### Styling
 
-* **README.md:** running linters ([071a279](https://github.com/CleberSchiavon/user-management/commit/071a2797e54d6ff86a554809205bc80f6c9fe5bf))
+- **README.md:** running linters ([071a279](https://github.com/CleberSchiavon/user-management/commit/071a2797e54d6ff86a554809205bc80f6c9fe5bf))
 
 ### [0.0.5](https://github.com/CleberSchiavon/user-management/compare/v0.0.4...v0.0.5) (2024-10-10)
 

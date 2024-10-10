@@ -1,6 +1,7 @@
 yarn.lock
-.gitlab/
 .next/
 node_modules/
 _meta.json
 **/*/.js
+apps/api/src/migrations/*
+**/*.spec.ts

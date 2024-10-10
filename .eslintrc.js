@@ -1,8 +1,8 @@
-// This configuration only applies to the package manager root.
+const rootLibraryConfig = require("@repo/configs/eslint-preset");
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
-  ignorePatterns: ["apps/**", "packages/**"],
-  extends: ["@repo/configs/eslint/library.js"],
+  ...rootLibraryConfig,
+  root: true,
   parser: "@typescript-eslint/parser",
   parserOptions: {
     project: true,
