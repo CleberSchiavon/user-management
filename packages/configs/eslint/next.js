@@ -7,7 +7,7 @@ module.exports = {
   extends: [
     "eslint:recommended",
     "prettier",
-    'plugin:@typescript-eslint/recommended',
+    "plugin:@typescript-eslint/recommended",
     require.resolve("@vercel/style-guide/eslint/next"),
   ],
   globals: {
@@ -19,7 +19,7 @@ module.exports = {
     browser: true,
   },
   rules: {
-    '@typescript-eslint/no-unused-vars': 'warn', 
+    "@typescript-eslint/no-unused-vars": "warn",
   },
   plugins: ["only-warn"],
   settings: {
