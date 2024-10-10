@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.11](https://github.com/CleberSchiavon/user-management/compare/v0.0.10...v0.0.11) (2024-10-10)
+
+
+### Bug Fixes
+
+* **app:** adding lf ([7bf9b4c](https://github.com/CleberSchiavon/user-management/commit/7bf9b4ca5f66334d400936213e839aa4a5d0f0a4))
+
 ### [0.0.10](https://github.com/CleberSchiavon/user-management/compare/v0.0.9...v0.0.10) (2024-10-10)
 
 ### Bug Fixes
