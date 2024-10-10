@@ -1,4 +1,4 @@
-import { AxiosClient } from "~/client/axiosClient";
+import { ApiResponse, AxiosClient, isAxiosError } from "~/client/axiosClient";
 import { CreateUser } from "components/Forms/schemas/CreateUser";
 import { LoginUser as LoginUserType } from "components/Forms/schemas/LoginUser";
 import { toast } from "react-toastify";
@@ -17,13 +17,13 @@ export const loginUser = async ({
     toast.success("Login realizado com sucesso");
     return userLoginData;
   } catch (error) {
-    if (error instanceof Error) {
-      toast.error(error.message);
-      throw error;
+    if (isAxiosError(error)) {
+      const errorMessage =
+        (error.response?.data as ApiResponse<unknown>)?.message ||
+        "Ocorreu um erro ao logar o usuário";
+      toast.error(errorMessage);
+      throw new Error(errorMessage);
     }
-    const errorMessage = "Ocorreu um erro ao realizar o login";
-    toast.error(errorMessage);
-    throw new Error(errorMessage);
   }
 };
 
@@ -33,13 +33,13 @@ export const registerUser = async ({ data }: { data: CreateUser }) => {
     toast.success("Cadastro realizado com sucesso");
     return responseData;
   } catch (error) {
-    if (error instanceof Error) {
-      toast.error(error.message);
-      throw error;
+    if (isAxiosError(error)) {
+      const errorMessage =
+        (error.response?.data as ApiResponse<unknown>)?.message ||
+        "Ocorreu um erro ao registrar o usuário";
+      toast.error(errorMessage);
+      throw new Error(errorMessage);
     }
-    const errorMessage = "Ocorreu um erro ao realizar o cadastro de usuário";
-    toast.error(errorMessage);
-    throw new Error(errorMessage);
   }
 };
 
@@ -54,9 +54,12 @@ export const verifyToken = async ({ token }: { token: string }) => {
 
     return responseData;
   } catch (error) {
-    if (error instanceof Error) {
-      toast.error("Token inválido, logue novamente");
-      throw error;
+    if (isAxiosError(error)) {
+      const errorMessage =
+        (error.response?.data as ApiResponse<unknown>)?.message ||
+        "Token inválido, tente novamente";
+      toast.error(errorMessage);
+      throw new Error(errorMessage);
     }
   }
 };

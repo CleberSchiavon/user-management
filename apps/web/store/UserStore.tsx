@@ -8,6 +8,8 @@ interface UserStore {
   setUsers: (users: UserFetchResponse) => void;
   updateUser: (newUsers: UserFetchResponse) => void;
   fetchUsers: (page:number, take:number) => Promise<void>;
+  currentEditedUser: User | null;
+  setCurrentEditedUser: (user: User) => void;
 }
 
 export const userStore = create<UserStore>()(
@@ -26,6 +28,8 @@ export const userStore = create<UserStore>()(
         const response = await getUsers(page, take);
         set({ users: response });
       },
+      currentEditedUser: null,
+      setCurrentEditedUser: (user: User) => set({ currentEditedUser: user }),
     }),
     {
       name: "user-storage",

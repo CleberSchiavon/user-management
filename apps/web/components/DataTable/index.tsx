@@ -22,13 +22,11 @@ import {
 } from "@/components/Table";
 import { PageMetaDto } from "@repo/types";
 import { Button } from "../Button";
-import { Input } from "../Input";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   paginationMeta?: PageMetaDto;
-  filterColumn?: string;
   onPreviousPage?: () => void;
   onNextPage?: () => void;
 }
@@ -38,11 +36,10 @@ export function DataTable<TData, TValue>({
   data,
   paginationMeta,
   onNextPage,
-  filterColumn,
   onPreviousPage,
 }: DataTableProps<TData, TValue>) {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-  const { getHeaderGroups, getRowModel, getColumn } = useReactTable({
+  const { getHeaderGroups, getRowModel } = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
@@ -68,17 +65,9 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="rounded-md border w-full overflow-x-auto shadow-md bg-white">
-      <div className="flex sm:flex-row flex-col  sm:py-0 py-2 items-center content-center">
-        <Input
-          placeholder={`Filtro por ${filterColumn}`}
-          value={(getColumn(filterColumn)?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
-            getColumn(filterColumn).setFilterValue(event.target.value)
-          }
-          className="max-w-sm"
-        />
+      <div className="flex sm:flex-row flex-col items-center content-center">
         {paginationMeta && (
-          <div className="bg-white sm:hidden flex gap-2">
+          <div className="bg-white sm:hidden flex gap-2 py-4">
             <Button
               variant="secondary"
               size="icon"

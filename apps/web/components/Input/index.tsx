@@ -41,15 +41,22 @@ export interface InputProps
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, labelClassName, label, type, errorMessage, ...props }: InputProps, ref) => {
+  (
+    {
+      className,
+      labelClassName,
+      label,
+      type,
+      errorMessage,
+      ...props
+    }: InputProps,
+    ref
+  ) => {
     return (
       <div className="flex flex-col gap-2">
         {label && (
           <label
-            className={cn(
-              "text-sm text-text font-normal",
-              labelClassName,
-            )}
+            className={cn("text-sm text-gray-800 font-normal", labelClassName)}
           >
             {label}
           </label>
@@ -57,18 +64,18 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         <input
           type={type}
           className={cn(
-            `flex h-10 bg-white rounded-lg border ${errorMessage && 'border-red-500'} text-text text-sm  px-3 py-6 placeholder:font-semibold placeholder:text-sm placeholder:text-gray-700 focus:outline-none focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50`,
-            className,
+            `flex h-10 bg-white rounded-lg border ${
+              errorMessage && "border-red-500"
+            } text-black text-sm  px-3 py-6  placeholder:text-sm placeholder:text-gray-400 focus:outline-none focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50`,
+            className
           )}
           ref={ref}
           {...props}
         />
-        <p className="text-xs text-red-500 font-semibold">
-        {errorMessage}
-        </p>
+        <p className="text-xs text-red-500 font-semibold">{errorMessage}</p>
       </div>
     );
-  },
+  }
 );
 Input.displayName = "Input";
 

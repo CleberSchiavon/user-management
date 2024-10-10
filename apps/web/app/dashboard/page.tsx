@@ -1,12 +1,15 @@
 "use client";
+import { useLayoutContext } from "@/context/LayoutContext";
 import isProtectedRoute from "@/lib/hocs/isProtectedRoute";
 import { userStore } from "@/store/UserStore";
 import React, { useEffect, useState } from "react";
 import { DataTable } from "~/components/DataTable";
 import { UsersTableColumns } from "~/components/DataTable/columns/user-columns";
+import EditUserModal from "~/components/Modals/EditUserModal";
 
 const DashboardPage = () => {
-  const { users, fetchUsers } = userStore();
+  const { users, fetchUsers, setCurrentEditedUser } = userStore();
+  const { editUserModal, setEditUserModal } = useLayoutContext();
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5);
 
@@ -50,9 +53,15 @@ const DashboardPage = () => {
           paginationMeta={users.meta}
           onNextPage={handleNextPage}
           onPreviousPage={handlePreviousPage}
-          filterColumn="email"
         />
       </div>
+      <EditUserModal
+        open={editUserModal}
+        onCloseDialog={() => {
+          setEditUserModal(false);
+          setCurrentEditedUser(null);
+        }}
+      />
     </div>
   );
 };

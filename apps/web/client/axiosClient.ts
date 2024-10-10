@@ -1,7 +1,11 @@
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 
+export interface ApiResponse<T> {
+  data: T;
+  message: string;
+}
 
-export const AxiosClient = axios.create({
+const AxiosClient = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
 })
 
@@ -12,3 +16,12 @@ AxiosClient.interceptors.request.use((config) => {
   }
   return config
 })
+
+const isAxiosError = (error: unknown): error is AxiosError => {
+  return axios.isAxiosError(error);
+};
+
+export {
+  AxiosClient,
+  isAxiosError,
+}
