@@ -9,7 +9,6 @@
 ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
 ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
 ![EditorConfig](https://img.shields.io/badge/Editor%20Config-E0EFEF?style=for-the-badge&logo=editorconfig&logoColor=000)
-
 ![Tailwind-CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
 ## Iniciar o projeto
@@ -36,9 +35,13 @@ yarn run dev
 
 ## Apps e Pacotes
 
-- `@repo/ui - packages/ui`: Aqui fica todos os componentes que são utilizados na aplicação
-- `@repo/eslint-config - packages/eslint-config`: Configurações do ESLINT
-- `@repo/typescript-config - packages/typescript-config`: Todos os TSConfigs utilizados na aplicação ficam aqui
+- `apps/web`: FrontEnd do Projeto
+- `apps/api`: BackEnd do Projeto
+- `@repo/configs - packages/configs`: Aqui fica todas configurações do projeto (eslint e derivadas)
+- `@repo/tailwind-config - packages/tailwind-config`: Configurações do Tailwind
+- `@repo/ts-config - packages/tsconfig`: Todos os TSConfigs utilizados na aplicação ficam aqui
+- `@repo/types - packages/types`: Todos os tipos compartilhados da aplicação ficam aqui
+
 
 ## Features
 
