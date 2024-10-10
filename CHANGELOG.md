@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.10](https://github.com/CleberSchiavon/user-management/compare/v0.0.9...v0.0.10) (2024-10-10)
+
+
+### Bug Fixes
+
+* **prettier:** adding prretierrc ([199eb5e](https://github.com/CleberSchiavon/user-management/commit/199eb5e4b6b3b8b62a93b84d4a849460180cbfc6))
+
 ### [0.0.9](https://github.com/CleberSchiavon/user-management/compare/v0.0.8...v0.0.9) (2024-10-10)
 
 ### Bug Fixes
