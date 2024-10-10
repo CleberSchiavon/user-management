@@ -2,12 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [0.0.2](https://github.com/CleberSchiavon/user-management/compare/v0.0.1...v0.0.2) (2024-10-10)
+### [0.0.3](https://github.com/CleberSchiavon/user-management/compare/v0.0.2...v0.0.3) (2024-10-10)
 
+
+### Bug Fixes
+
+* **apps)(web:** fixing lint problems in apps web ([284d45b](https://github.com/CleberSchiavon/user-management/commit/284d45b0db976cf1a101d6f333c4e4ecfb973a42))
+* **apps:** adding eslint  in apps web ([98e87d1](https://github.com/CleberSchiavon/user-management/commit/98e87d146696ba5009920434fabf8dbe8c2a2a02))
+
+
+### CI
+
+* **.github:** adding validate pr workflows ([c276bce](https://github.com/CleberSchiavon/user-management/commit/c276bcef3495ec2e47b27fb524c5d0b744025231))
+* **apps:** adding final configuration in tsconfig ([6d16004](https://github.com/CleberSchiavon/user-management/commit/6d160042d2fb0c51c9acdaa842d3f253952bfb53))
+
+### [0.0.2](https://github.com/CleberSchiavon/user-management/compare/v0.0.1...v0.0.2) (2024-10-10)
 
 ### Styling
 
-* **apps:** running linters in all project ([a4ba71d](https://github.com/CleberSchiavon/user-management/commit/a4ba71dc8064746b33b12ec07f8f9908c971db76))
+- **apps:** running linters in all project ([a4ba71d](https://github.com/CleberSchiavon/user-management/commit/a4ba71dc8064746b33b12ec07f8f9908c971db76))
 
 ### 0.0.1 (2024-10-10)
 
