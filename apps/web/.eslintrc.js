@@ -1,12 +1,11 @@
+const nextEslint = require('@repo/configs/eslint/next.js');
+
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
+  ...nextEslint,
   root: true,
-  extends: ["@repo/configs/eslint-preset.js"],
-  parser: "@typescript-eslint/parser",
+  parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: true,
-  },
-  rules: {
-    "no-unused-vars": "off",
+    project: './tsconfig.json',
   },
 };
