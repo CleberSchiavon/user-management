@@ -1,0 +1,45 @@
+name: "Validate PR"
+
+on:
+  push:
+    branches:
+      - "feature/**"
+      - "release/**"
+      - "bugfix/**"
+      - "hotfix/**"
+
+  pull_request:
+    branches:
+      - develop
+      - release/**
+      - hotfix/**
+    types:
+      - opened
+      - edited
+      - synchronize
+
+permissions:
+  contents: write
+
+jobs:
+  lint:
+    name: Lint Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.12.2
+
+      - name: Run install
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: install
+
+      - name: ⬣ Lint Check
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: lint-check
