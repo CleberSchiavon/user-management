@@ -10,7 +10,7 @@ interface IUserTableActions {
 }
 
 export default function UserTableActions({ user }: IUserTableActions) {
-  const { setEditUserModal } = useLayoutContext();
+  const { setEditUserModal, setDeleteUserModal } = useLayoutContext();
   const { setCurrentEditedUser } = userStore();
   return (
     <div className="flex flex-row">
@@ -24,7 +24,14 @@ export default function UserTableActions({ user }: IUserTableActions) {
       >
         <Edit size={16} color="black" />
       </Button>
-      <Button variant="ghost" size="icon">
+      <Button
+        variant="ghost"
+        size="icon"
+        onClick={() => {
+          setDeleteUserModal(true);
+          setCurrentEditedUser(user);
+        }}
+      >
         <Trash2 size={16} color="black" />
       </Button>
     </div>

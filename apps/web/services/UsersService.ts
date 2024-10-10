@@ -43,7 +43,7 @@ export const getUser = async ({ id }: { id: string }) => {
   }
 }
 
-export const deleteUser = async ({ id }: { id: string }) => {
+export const deleteUser = async ({ id }: { id: number }) => {
   try {
     const { data: userLoginData } = await AxiosClient.delete<User>(
       `/users/${id}`,

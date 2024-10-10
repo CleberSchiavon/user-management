@@ -5,11 +5,13 @@ import { userStore } from "@/store/UserStore";
 import React, { useEffect, useState } from "react";
 import { DataTable } from "~/components/DataTable";
 import { UsersTableColumns } from "~/components/DataTable/columns/user-columns";
+import DeleteUserModal from "~/components/Modals/DeleteUserModal";
 import EditUserModal from "~/components/Modals/EditUserModal";
 
 const DashboardPage = () => {
-  const { users, fetchUsers, setCurrentEditedUser } = userStore();
-  const { editUserModal, setEditUserModal } = useLayoutContext();
+  const { users, fetchUsers, setCurrentEditedUser} = userStore();
+  const { editUserModal, setEditUserModal, deleteUserModal, setDeleteUserModal } =
+    useLayoutContext();
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5);
 
@@ -59,6 +61,13 @@ const DashboardPage = () => {
         open={editUserModal}
         onCloseDialog={() => {
           setEditUserModal(false);
+          setCurrentEditedUser(null);
+        }}
+      />
+      <DeleteUserModal
+        open={deleteUserModal}
+        onCloseDialog={() => {
+          setDeleteUserModal(false);
           setCurrentEditedUser(null);
         }}
       />

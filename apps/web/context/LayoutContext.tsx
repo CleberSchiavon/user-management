@@ -1,26 +1,43 @@
-import { User } from "@repo/types";
-import React, { createContext, ReactNode, useContext, useState, useMemo } from "react";
+import React, {
+  createContext,
+  ReactNode,
+  useContext,
+  useState,
+  useMemo,
+} from "react";
 
 interface LayoutContextProps {
-    editUserModal: boolean;
-    setEditUserModal: React.Dispatch<React.SetStateAction<boolean>>;
+  editUserModal: boolean;
+  setEditUserModal: React.Dispatch<React.SetStateAction<boolean>>;
+  deleteUserModal: boolean;
+  setDeleteUserModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const LayoutContext = createContext<LayoutContextProps>({
-    editUserModal: false,
-    setEditUserModal: () => {},
+  editUserModal: false,
+  setEditUserModal: () => {},
+  deleteUserModal: false,
+  setDeleteUserModal: () => {},
 });
 
 export const useLayoutContext = () => useContext(LayoutContext);
 
-export const LayoutProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-    const [editUserModal, setEditUserModal] = useState<boolean>(false);
+export const LayoutProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
+  const [editUserModal, setEditUserModal] = useState<boolean>(false);
+  const [deleteUserModal, setDeleteUserModal] = useState<boolean>(false);
+  const value = useMemo(
+    () => ({
+      editUserModal,
+      setEditUserModal,
+      deleteUserModal,
+      setDeleteUserModal,
+    }),
+    [editUserModal, deleteUserModal]
+  );
 
-    const value = useMemo(() => ({ editUserModal, setEditUserModal }), [editUserModal]);
-
-    return (
-        <LayoutContext.Provider value={value}>
-            {children}
-        </LayoutContext.Provider>
-    );
+  return (
+    <LayoutContext.Provider value={value}>{children}</LayoutContext.Provider>
+  );
 };
