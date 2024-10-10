@@ -2,12 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [0.0.4](https://github.com/CleberSchiavon/user-management/compare/v0.0.3...v0.0.4) (2024-10-10)
+### [0.0.5](https://github.com/CleberSchiavon/user-management/compare/v0.0.4...v0.0.5) (2024-10-10)
 
+### [0.0.4](https://github.com/CleberSchiavon/user-management/compare/v0.0.3...v0.0.4) (2024-10-10)
 
 ### Styling
 
-* **apps:** running linters ([3ac2200](https://github.com/CleberSchiavon/user-management/commit/3ac22007291f0f1fbb4a864c2623d3ae5f5620c9))
+- **apps:** running linters ([3ac2200](https://github.com/CleberSchiavon/user-management/commit/3ac22007291f0f1fbb4a864c2623d3ae5f5620c9))
 
 ### [0.0.3](https://github.com/CleberSchiavon/user-management/compare/v0.0.2...v0.0.3) (2024-10-10)
 
