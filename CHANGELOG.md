@@ -2,57 +2,59 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### 0.0.1 (2024-10-10)
+### [0.0.2](https://github.com/CleberSchiavon/user-management/compare/v0.0.1...v0.0.2) (2024-10-10)
 
+
+### Styling
+
+* **apps:** running linters in all project ([a4ba71d](https://github.com/CleberSchiavon/user-management/commit/a4ba71dc8064746b33b12ec07f8f9908c971db76))
+
+### 0.0.1 (2024-10-10)
 
 ### Features
 
-* **app)(api:** creating pagination module ([8e75dd7](https://github.com/CleberSchiavon/user-management/commit/8e75dd76e8cb8989c340f5382ba604f482cbc713))
-* **app:** adding register user flux ([0086966](https://github.com/CleberSchiavon/user-management/commit/0086966d98e6b76d3b5b23852845e5c82541d3ed))
-* **apps)(api:**  adding typeorm in api and creating envs ([db7b15e](https://github.com/CleberSchiavon/user-management/commit/db7b15e0230dcc77ae36bd1e4945e2a41154c266))
-* **apps)(api:** adding more props in login return ([1ab16b8](https://github.com/CleberSchiavon/user-management/commit/1ab16b88b1c88c600f1b6f0e4e6400536f382710))
-* **apps)(api:** adding pagination to api ([8aabda2](https://github.com/CleberSchiavon/user-management/commit/8aabda289d7146bf3056ad95d84be00934d5b4e6))
-* **apps)(api:** adding the rest of user module ([8a2a097](https://github.com/CleberSchiavon/user-management/commit/8a2a0970792bcd750716d66f24bcce6dd640fb3c))
-* **apps)(api:** adding typeorm migrations to api ([934a511](https://github.com/CleberSchiavon/user-management/commit/934a511d8bccf56caa3d109dfdb569eddf24ef3a))
-* **apps)(api:** adding verifytoken route ([90388e9](https://github.com/CleberSchiavon/user-management/commit/90388e97a289ac5290555988deba262da18652cf))
-* **apps)(api:** creating auth module ([7c6b1d6](https://github.com/CleberSchiavon/user-management/commit/7c6b1d61afdd018c2796da26459980cd263a4b1c))
-* **apps)(api:** creating health module/configuring swagger and adding postman collection to repo ([cc7322c](https://github.com/CleberSchiavon/user-management/commit/cc7322cbb274dfe3901a295411ce60a06c0c2e4c))
-* **apps)(api:** creating user module ([fe3c3de](https://github.com/CleberSchiavon/user-management/commit/fe3c3de480d638e3b2538fa1c8ddd7451e1aa598))
-* **apps)(web:** adding deleteusermodal flux ([eed8c3a](https://github.com/CleberSchiavon/user-management/commit/eed8c3a663aa0ccbf2e608e89adf44bfe4666042))
-* **apps)(web:** adding edit user modal ([e348dd8](https://github.com/CleberSchiavon/user-management/commit/e348dd804e6afae72bc92e01c1f8a492dad6d2ae))
-* **apps)(web:** adding fetch logic ([21febf5](https://github.com/CleberSchiavon/user-management/commit/21febf50a444e330700c98618b289756ce2a340c))
-* **apps)(web:** adding protectedRoute and verifyToken in front ([64ad3b7](https://github.com/CleberSchiavon/user-management/commit/64ad3b778b73f361371fecd1003aee99f71457a2))
-* **apps)(web:** adding responsive design in login screens ([93fc14c](https://github.com/CleberSchiavon/user-management/commit/93fc14cd4a3e92a6d268c8e936be1f30c6c0e43e))
-* **apps)(web:** adding user table and query fetching ([506d56c](https://github.com/CleberSchiavon/user-management/commit/506d56c0e19c18648686c3d988faf99b0eb7e37a))
-* **apps)(web:** creating dashboard layout ([e5e08ac](https://github.com/CleberSchiavon/user-management/commit/e5e08ace59c9b6b2ae2625f078138d2d1a302646))
-* **apps)(web:** creating zustand authstore ([bb48cc9](https://github.com/CleberSchiavon/user-management/commit/bb48cc9c0a5f7a0784b4141a26d492614e36bd03))
-* **apps)(web:** removing ui package and creating login flux ([adbfdb8](https://github.com/CleberSchiavon/user-management/commit/adbfdb83c35c6bcae57377e59812eff75e9056ed))
-
+- **app)(api:** creating pagination module ([8e75dd7](https://github.com/CleberSchiavon/user-management/commit/8e75dd76e8cb8989c340f5382ba604f482cbc713))
+- **app:** adding register user flux ([0086966](https://github.com/CleberSchiavon/user-management/commit/0086966d98e6b76d3b5b23852845e5c82541d3ed))
+- **apps)(api:** adding typeorm in api and creating envs ([db7b15e](https://github.com/CleberSchiavon/user-management/commit/db7b15e0230dcc77ae36bd1e4945e2a41154c266))
+- **apps)(api:** adding more props in login return ([1ab16b8](https://github.com/CleberSchiavon/user-management/commit/1ab16b88b1c88c600f1b6f0e4e6400536f382710))
+- **apps)(api:** adding pagination to api ([8aabda2](https://github.com/CleberSchiavon/user-management/commit/8aabda289d7146bf3056ad95d84be00934d5b4e6))
+- **apps)(api:** adding the rest of user module ([8a2a097](https://github.com/CleberSchiavon/user-management/commit/8a2a0970792bcd750716d66f24bcce6dd640fb3c))
+- **apps)(api:** adding typeorm migrations to api ([934a511](https://github.com/CleberSchiavon/user-management/commit/934a511d8bccf56caa3d109dfdb569eddf24ef3a))
+- **apps)(api:** adding verifytoken route ([90388e9](https://github.com/CleberSchiavon/user-management/commit/90388e97a289ac5290555988deba262da18652cf))
+- **apps)(api:** creating auth module ([7c6b1d6](https://github.com/CleberSchiavon/user-management/commit/7c6b1d61afdd018c2796da26459980cd263a4b1c))
+- **apps)(api:** creating health module/configuring swagger and adding postman collection to repo ([cc7322c](https://github.com/CleberSchiavon/user-management/commit/cc7322cbb274dfe3901a295411ce60a06c0c2e4c))
+- **apps)(api:** creating user module ([fe3c3de](https://github.com/CleberSchiavon/user-management/commit/fe3c3de480d638e3b2538fa1c8ddd7451e1aa598))
+- **apps)(web:** adding deleteusermodal flux ([eed8c3a](https://github.com/CleberSchiavon/user-management/commit/eed8c3a663aa0ccbf2e608e89adf44bfe4666042))
+- **apps)(web:** adding edit user modal ([e348dd8](https://github.com/CleberSchiavon/user-management/commit/e348dd804e6afae72bc92e01c1f8a492dad6d2ae))
+- **apps)(web:** adding fetch logic ([21febf5](https://github.com/CleberSchiavon/user-management/commit/21febf50a444e330700c98618b289756ce2a340c))
+- **apps)(web:** adding protectedRoute and verifyToken in front ([64ad3b7](https://github.com/CleberSchiavon/user-management/commit/64ad3b778b73f361371fecd1003aee99f71457a2))
+- **apps)(web:** adding responsive design in login screens ([93fc14c](https://github.com/CleberSchiavon/user-management/commit/93fc14cd4a3e92a6d268c8e936be1f30c6c0e43e))
+- **apps)(web:** adding user table and query fetching ([506d56c](https://github.com/CleberSchiavon/user-management/commit/506d56c0e19c18648686c3d988faf99b0eb7e37a))
+- **apps)(web:** creating dashboard layout ([e5e08ac](https://github.com/CleberSchiavon/user-management/commit/e5e08ace59c9b6b2ae2625f078138d2d1a302646))
+- **apps)(web:** creating zustand authstore ([bb48cc9](https://github.com/CleberSchiavon/user-management/commit/bb48cc9c0a5f7a0784b4141a26d492614e36bd03))
+- **apps)(web:** removing ui package and creating login flux ([adbfdb8](https://github.com/CleberSchiavon/user-management/commit/adbfdb83c35c6bcae57377e59812eff75e9056ed))
 
 ### Bug Fixes
 
-* **app:** removing workspaces gitflows and adding scripts ([d526869](https://github.com/CleberSchiavon/user-management/commit/d526869d44bda7b44fee086a2972bfa8444fedeb))
-* **apps)(api:** removing password for getAllUsers query ([b7e09b3](https://github.com/CleberSchiavon/user-management/commit/b7e09b329768a79257c2c696af008880d9712f52))
-* **apps)(web:** responsive datatable ([a3e8d71](https://github.com/CleberSchiavon/user-management/commit/a3e8d71b427ed0d4f33648d587241a90f4c29b14))
-
+- **app:** removing workspaces gitflows and adding scripts ([d526869](https://github.com/CleberSchiavon/user-management/commit/d526869d44bda7b44fee086a2972bfa8444fedeb))
+- **apps)(api:** removing password for getAllUsers query ([b7e09b3](https://github.com/CleberSchiavon/user-management/commit/b7e09b329768a79257c2c696af008880d9712f52))
+- **apps)(web:** responsive datatable ([a3e8d71](https://github.com/CleberSchiavon/user-management/commit/a3e8d71b427ed0d4f33648d587241a90f4c29b14))
 
 ### Code Refac
 
-* **app)(web:** creating initial structure of frontend ([79d9020](https://github.com/CleberSchiavon/user-management/commit/79d90206b0a98695cd33360cfbf0313154fa1f74))
-* **app)(web:** creating ui package and restarting web project ([9d6e38b](https://github.com/CleberSchiavon/user-management/commit/9d6e38b007228de559369d6006c3f973259bd33e))
-
+- **app)(web:** creating initial structure of frontend ([79d9020](https://github.com/CleberSchiavon/user-management/commit/79d90206b0a98695cd33360cfbf0313154fa1f74))
+- **app)(web:** creating ui package and restarting web project ([9d6e38b](https://github.com/CleberSchiavon/user-management/commit/9d6e38b007228de559369d6006c3f973259bd33e))
 
 ### Outros
 
-* **apps)(api:** adding some verifications in update user+ adding phoneNumber not required in dto ([01ff2af](https://github.com/CleberSchiavon/user-management/commit/01ff2af6a6f73793dab59c01d6df2e9b0a899c8e))
-* **apps)(api:** creating middle http logger ([c958952](https://github.com/CleberSchiavon/user-management/commit/c958952598dff3b8195485a8cbbe666a53333aae))
-* **apps)(api:** starting removing prisma in api ([e16257e](https://github.com/CleberSchiavon/user-management/commit/e16257e9d22dac4be930cd92ed124c09cfa6a73e))
-* **package.json:** adding scripts in package ([dc22bb0](https://github.com/CleberSchiavon/user-management/commit/dc22bb02476a7d471c1eea20682717a71ece982a))
-
+- **apps)(api:** adding some verifications in update user+ adding phoneNumber not required in dto ([01ff2af](https://github.com/CleberSchiavon/user-management/commit/01ff2af6a6f73793dab59c01d6df2e9b0a899c8e))
+- **apps)(api:** creating middle http logger ([c958952](https://github.com/CleberSchiavon/user-management/commit/c958952598dff3b8195485a8cbbe666a53333aae))
+- **apps)(api:** starting removing prisma in api ([e16257e](https://github.com/CleberSchiavon/user-management/commit/e16257e9d22dac4be930cd92ed124c09cfa6a73e))
+- **package.json:** adding scripts in package ([dc22bb0](https://github.com/CleberSchiavon/user-management/commit/dc22bb02476a7d471c1eea20682717a71ece982a))
 
 ### CI
 
-* **apps:** adding all configurations needed to run the project with quality ([81d82a4](https://github.com/CleberSchiavon/user-management/commit/81d82a40dca273f027a80950a541c5bd10114990))
+- **apps:** adding all configurations needed to run the project with quality ([81d82a4](https://github.com/CleberSchiavon/user-management/commit/81d82a40dca273f027a80950a541c5bd10114990))
 
 ## 1.2.0 (2024-06-24)
 
