@@ -1,0 +1,6 @@
+yarn.lock
+.gitlab/
+.next/
+node_modules/
+_meta.json
+**/*/.js
