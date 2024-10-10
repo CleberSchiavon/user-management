@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 
 import {
   ColumnDef,
@@ -9,6 +10,8 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 
+import { ArrowRight, ArrowLeft } from "lucide-react";
+
 import {
   Table,
   TableBody,
@@ -17,9 +20,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/Table";
-import { Button } from "../Button";
 import { PageMetaDto } from "@repo/types";
-import { useState } from "react";
+import { Button } from "../Button";
 import { Input } from "../Input";
 
 interface DataTableProps<TData, TValue> {
@@ -66,14 +68,36 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="rounded-md border w-full overflow-x-auto shadow-md bg-white">
-      <Input
-        placeholder={`Filtro por ${filterColumn}`}
-        value={(getColumn(filterColumn)?.getFilterValue() as string) ?? ""}
-        onChange={(event) =>
-          getColumn(filterColumn).setFilterValue(event.target.value)
-        }
-        className="max-w-sm"
-      />
+      <div className="flex sm:flex-row flex-col  sm:py-0 py-2 items-center content-center">
+        <Input
+          placeholder={`Filtro por ${filterColumn}`}
+          value={(getColumn(filterColumn)?.getFilterValue() as string) ?? ""}
+          onChange={(event) =>
+            getColumn(filterColumn).setFilterValue(event.target.value)
+          }
+          className="max-w-sm"
+        />
+        {paginationMeta && (
+          <div className="bg-white sm:hidden flex gap-2">
+            <Button
+              variant="secondary"
+              size="icon"
+              onClick={() => onPreviousPage()}
+              disabled={!hasPreviousPage}
+              className="text-black"
+            >
+              <ArrowLeft />
+            </Button>
+            <Button
+              size="icon"
+              onClick={() => onNextPage()}
+              disabled={!hasNextPage}
+            >
+              <ArrowRight />
+            </Button>
+          </div>
+        )}
+      </div>
       <Table className="min-w-full">
         <TableHeader>
           {headerGroups.map((headerGroup) => (
@@ -124,7 +148,7 @@ export function DataTable<TData, TValue>({
 
       {paginationMeta && (
         <div className="flex flex-row justify-between items-center px-4 bg-white">
-          <div className="flex flex-row gap-4">
+          <div className="flex sm:flex-row flex-col sm:gap-4 gap-2">
             <p>
               Página {paginationMeta.page} de {paginationMeta.pageCount}
             </p>
@@ -133,7 +157,7 @@ export function DataTable<TData, TValue>({
               visualizar
             </p>
           </div>
-          <div className="bg-white flex items-center justify-end space-x-2 py-4 p-4">
+          <div className="bg-white hidden sm:flex items-center justify-end space-x-2 py-4 p-4">
             <Button
               variant="secondary"
               size="sm"
