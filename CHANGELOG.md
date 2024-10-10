@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com/CleberSchiavon/user-management/compare/v0.0.6...v0.0.7) (2024-10-10)
+
+
+### Bug Fixes
+
+* **root:** adding lint check ([110f520](https://github.com/CleberSchiavon/user-management/commit/110f5204aa2e215cac1c16ba0a069997838e5773))
+
 ### [0.0.6](https://github.com/CleberSchiavon/user-management/compare/v0.0.5...v0.0.6) (2024-10-10)
 
 ### Bug Fixes
