@@ -1,12 +1,14 @@
+const eslintPreset = require("@repo/configs/eslint/library");
+
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
+  ...eslintPreset,
   root: true,
-  extends: ['@repo/configs/eslint-preset.js'],
-  parser: '@typescript-eslint/parser',
+  parser: "@typescript-eslint/parser",
   parserOptions: {
     project: true,
   },
   rules: {
-    'no-unused-vars': 'off',
+    "no-unused-vars": "off",
   },
-}
+};

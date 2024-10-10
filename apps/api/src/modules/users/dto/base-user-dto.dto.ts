@@ -6,7 +6,6 @@ import {
   IsStrongPassword,
   MaxLength,
   MinLength,
-  
 } from 'class-validator';
 import { IsMatching } from '~/shared/utils/CustomValidators';
 

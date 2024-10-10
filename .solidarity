@@ -1,0 +1,33 @@
+{
+  "config": {
+    "output": "moderate"
+  },
+  "requirements": {
+    "Bash": [
+      {
+        "rule": "cli",
+        "binary": "bash"
+      }
+    ],
+    "Node": [
+      {
+        "rule": "cli",
+        "binary": "node",
+        "semver": ">= 18.x"
+      }
+    ],
+    "Git email": [
+      {
+        "rule": "shell",
+        "command": "git config core.ignorecase",
+        "match": "true"
+      }
+    ],
+    "Yarn": [
+      {
+        "rule": "cli",
+        "binary": "yarn"
+      }
+    ]
+  }
+}

@@ -47,10 +47,11 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       labelClassName,
       label,
       type,
+      onChange,
       errorMessage,
       ...props
     }: InputProps,
-    ref
+    ref,
   ) => {
     return (
       <div className="flex flex-col gap-2">
@@ -67,15 +68,16 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             `flex h-10 bg-white rounded-lg border ${
               errorMessage && "border-red-500"
             } text-black text-sm  px-3 py-6  placeholder:text-sm placeholder:text-gray-400 focus:outline-none focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50`,
-            className
+            className,
           )}
           ref={ref}
+          onChange={onChange}
           {...props}
         />
         <p className="text-xs text-red-500 font-semibold">{errorMessage}</p>
       </div>
     );
-  }
+  },
 );
 Input.displayName = "Input";
 

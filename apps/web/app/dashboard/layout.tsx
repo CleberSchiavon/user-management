@@ -4,11 +4,11 @@ import { authStore } from "@/store/AuthStore";
 import Navbar from "~/components/Navbar";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  const {user} = authStore((state) => state)
+  const { user } = authStore((state) => state);
   return (
-      <LayoutProvider>
+    <LayoutProvider>
       {user.access_token !== undefined && <Navbar />}
       {children}
-      </LayoutProvider>
+    </LayoutProvider>
   );
 }

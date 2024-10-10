@@ -38,10 +38,7 @@ export default function DeleteUserModal({
       onCloseDialog={onCloseDialog}
       modalFooter={
         <div className="flex flex-row gap-4">
-          <Button
-            disabled={loading}
-            onClick={() => onCloseDialog()}
-          >
+          <Button disabled={loading} onClick={() => onCloseDialog()}>
             Cancelar
           </Button>
           <Button

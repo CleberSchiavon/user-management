@@ -1,12 +1,11 @@
+const nextEslint = require("@repo/configs/eslint/next.js");
+
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
+  ...nextEslint,
   root: true,
-  extends: ["@repo/configs/eslint-preset.js", "plugin:storybook/recommended"],
-  parser: '@typescript-eslint/parser',
+  parser: "@typescript-eslint/parser",
   parserOptions: {
-    project: true,
+    project: "./tsconfig.json",
   },
-  rules: {
-    'no-unused-vars': 'off',
-  },
-}
+};

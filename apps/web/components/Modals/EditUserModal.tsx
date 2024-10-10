@@ -37,7 +37,7 @@ export default function EditUserModal({
       setValue("email", currentEditedUser.email);
       setValue("phoneNumber", currentEditedUser.phoneNumber);
     }
-  },[currentEditedUser])
+  }, [currentEditedUser]);
 
   const fetchTableData = async ({ page, itemsPerPage }) => {
     await fetchUsers(page, itemsPerPage);

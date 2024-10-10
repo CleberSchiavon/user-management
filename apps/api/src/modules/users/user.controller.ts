@@ -1,4 +1,14 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Put, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  HttpStatus,
+  Param,
+  Put,
+  Query,
+} from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { UsersService } from './users.service';
 import { BaseUser } from './dto/base-user-dto.dto';
@@ -38,7 +48,7 @@ export class UserController {
 
   @HttpCode(HttpStatus.NO_CONTENT)
   @Put(':id')
-  @ApiOperation({ summary: 'Update user by id' })  
+  @ApiOperation({ summary: 'Update user by id' })
   @ApiResponse({
     status: 204,
     description: 'User updated successfully',
@@ -47,7 +57,10 @@ export class UserController {
     status: 404,
     description: 'User not found',
   })
-  async update(@Body() updateUserDto: UpdateUserDto, @Param('id') id: number): Promise<void> {
+  async update(
+    @Body() updateUserDto: UpdateUserDto,
+    @Param('id') id: number,
+  ): Promise<void> {
     await this.usersService.update(id, updateUserDto);
   }
 

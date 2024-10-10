@@ -7,7 +7,7 @@ interface UserStore {
   users: UserFetchResponse | null;
   setUsers: (users: UserFetchResponse) => void;
   updateUser: (newUsers: UserFetchResponse) => void;
-  fetchUsers: (page:number, take:number) => Promise<void>;
+  fetchUsers: (page: number, take: number) => Promise<void>;
   currentEditedUser: User | null;
   setCurrentEditedUser: (user: User) => void;
 }
@@ -34,6 +34,6 @@ export const userStore = create<UserStore>()(
     {
       name: "user-storage",
       storage: createJSONStorage(() => sessionStorage),
-    }
-  )
+    },
+  ),
 );

@@ -3,13 +3,13 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
-declare const module: any;
 async function bootstrap() {
   const logger = new Logger('EntryPoint');
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
 
-  
+  app.enableCors();
+
   const config = new DocumentBuilder()
     .setTitle('User Management API')
     .setDescription('Api Docs for User Management')
@@ -27,6 +27,8 @@ async function bootstrap() {
     module.hot.accept();
     module.hot.dispose(() => app.close());
   }
+
   logger.log(`Server running on http://localhost:${PORT}`);
 }
+
 bootstrap();

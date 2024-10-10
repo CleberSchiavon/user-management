@@ -11,9 +11,8 @@ import { Request } from 'express';
 import { IS_PUBLIC_KEY } from './strategy';
 import { Users } from '../users/entities/user.entity';
 
-
 export interface RequestWithUser extends Request {
-  user: Users
+  user: Users;
 }
 
 @Injectable()
@@ -36,8 +35,7 @@ export class JwtAuthGuard implements CanActivate {
 
     const request = context.switchToHttp().getRequest<RequestWithUser>();
     const authToken = this.extractTokenFromAuthorizationHeader(request);
-    const jwtSecretKey = this.configService.get("API_JWT_SECRET");
-
+    const jwtSecretKey = this.configService.get('API_JWT_SECRET');
 
     if (!authToken) {
       throw new UnauthorizedException('Authorization token is missing.');
@@ -55,7 +53,9 @@ export class JwtAuthGuard implements CanActivate {
     return true;
   }
 
-  private extractTokenFromAuthorizationHeader(request: Request): string | undefined {
+  private extractTokenFromAuthorizationHeader(
+    request: Request,
+  ): string | undefined {
     const authorizationHeader = request.headers.authorization;
     const [scheme, token] = authorizationHeader?.split(' ') ?? [];
     return scheme === 'Bearer' ? token : undefined;
