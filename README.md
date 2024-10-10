@@ -34,7 +34,6 @@ Agora rode o seguinte comando pra iniciar o repositório em modo de desenvolvime
 yarn run dev
 ```
 
-
 ## Apps e Pacotes
 
 - `@repo/ui - packages/ui`: Aqui fica todos os componentes que são utilizados na aplicação
