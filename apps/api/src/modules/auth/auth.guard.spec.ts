@@ -8,7 +8,7 @@ import { JwtAuthGuard } from './auth.guard';
 describe('JwtAuthGuard', () => {
   let jwtAuthGuard: JwtAuthGuard;
   let jwtService: JwtService;
-  let configService: ConfigService
+  let configService: ConfigService;
   let reflector: Reflector;
 
   beforeEach(() => {
@@ -19,7 +19,7 @@ describe('JwtAuthGuard', () => {
     configService = {
       get: jest.fn(),
     } as unknown as ConfigService;
-    
+
     reflector = {
       getAllAndOverride: jest.fn(),
     } as unknown as Reflector;
@@ -31,7 +31,7 @@ describe('JwtAuthGuard', () => {
     it('should return true for public endpoints', async () => {
       const context = {
         switchToHttp: () => ({
-          getRequest: () => ({} as Request), 
+          getRequest: () => ({}) as Request,
         }),
         getHandler: () => ({}),
         getClass: () => ({}),
@@ -46,11 +46,12 @@ describe('JwtAuthGuard', () => {
     it('should throw UnauthorizedException when authorization token is missing', async () => {
       const context = {
         switchToHttp: () => ({
-          getRequest: () => ({
-            headers: {
-              authorization: undefined,
-            },
-          } as Request),
+          getRequest: () =>
+            ({
+              headers: {
+                authorization: undefined,
+              },
+            }) as Request,
         }),
         getHandler: () => ({}),
         getClass: () => ({}),
@@ -64,11 +65,12 @@ describe('JwtAuthGuard', () => {
     it('should throw UnauthorizedException when authorization token is invalid', async () => {
       const context = {
         switchToHttp: () => ({
-          getRequest: () => ({
-            headers: {
-              authorization: 'Bearer invalid_token',
-            },
-          } as Request), 
+          getRequest: () =>
+            ({
+              headers: {
+                authorization: 'Bearer invalid_token',
+              },
+            }) as Request,
         }),
         getHandler: () => ({}),
         getClass: () => ({}),
@@ -84,11 +86,12 @@ describe('JwtAuthGuard', () => {
     it('should return true when authorization token is valid', async () => {
       const context = {
         switchToHttp: () => ({
-          getRequest: () => ({
-            headers: {
-              authorization: 'Bearer valid_token',
-            },
-          } as Request), 
+          getRequest: () =>
+            ({
+              headers: {
+                authorization: 'Bearer valid_token',
+              },
+            }) as Request,
         }),
         getHandler: () => ({}),
         getClass: () => ({}),
@@ -107,9 +110,10 @@ describe('JwtAuthGuard', () => {
         headers: {
           authorization: 'Bearer valid_token',
         },
-      } as Request; 
+      } as Request;
 
-      const token = jwtAuthGuard['extractTokenFromAuthorizationHeader'](request);
+      const token =
+        jwtAuthGuard['extractTokenFromAuthorizationHeader'](request);
       expect(token).toBe('valid_token');
     });
 
@@ -118,9 +122,10 @@ describe('JwtAuthGuard', () => {
         headers: {
           authorization: undefined,
         },
-      } as Request; 
+      } as Request;
 
-      const token = jwtAuthGuard['extractTokenFromAuthorizationHeader'](request);
+      const token =
+        jwtAuthGuard['extractTokenFromAuthorizationHeader'](request);
       expect(token).toBeUndefined();
     });
   });

@@ -1,16 +1,18 @@
 import * as bcrypt from 'bcrypt';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import {UserLoginReturn} from '@repo/types'
+import { UserLoginReturn } from '@repo/types';
 import { UsersService } from '../users/users.service';
 import { CreateUserDto } from '~/modules/users/dto/create-user-dto';
 
-
 @Injectable()
 export class AuthService {
-  constructor(private readonly usersService: UsersService, private readonly jwtService: JwtService) {}
+  constructor(
+    private readonly usersService: UsersService,
+    private readonly jwtService: JwtService,
+  ) {}
 
-  async login(email: string, password: string):Promise<UserLoginReturn> {
+  async login(email: string, password: string): Promise<UserLoginReturn> {
     const user = await this.usersService.findOneByEmail(email);
 
     if (!user) {
@@ -22,10 +24,10 @@ export class AuthService {
     if (!isPasswordValid) {
       throw new UnauthorizedException('Invalid email or password.');
     }
-    
+
     const payload = { sub: user.id, email: user.email };
     const accessToken = await this.jwtService.signAsync(payload, {
-      expiresIn: '1d'
+      expiresIn: '1d',
     });
 
     return {
@@ -33,13 +35,17 @@ export class AuthService {
       username: user.username,
       email: user.email,
       phoneNumber: user.phoneNumber,
-      access_token: accessToken
+      access_token: accessToken,
     };
   }
 
   async signUp(createUserDto: CreateUserDto) {
-    const existingUser = await this.usersService.findOneByUsername(createUserDto.username);
-    const existingEmail = await this.usersService.findOneByEmail(createUserDto.email);
+    const existingUser = await this.usersService.findOneByUsername(
+      createUserDto.username,
+    );
+    const existingEmail = await this.usersService.findOneByEmail(
+      createUserDto.email,
+    );
 
     if (existingEmail || existingUser) {
       throw new UnauthorizedException('User already exists.');
@@ -58,5 +64,4 @@ export class AuthService {
       throw new UnauthorizedException('Invalid token.');
     }
   }
-  
 }

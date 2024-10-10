@@ -12,30 +12,32 @@ import { HealthService } from './modules/health/health.service';
 import typeorm from './config/typeorm';
 import { UserController } from './modules/users/user.controller';
 import { HTTPLoggerInterceptor } from './middleware/http.logger.middleware';
-
-const isProductionEnviroment = process.env.development !== 'production'
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
       validationSchema: validationSchemaForEnv,
-      load: [typeorm]
+      load: [typeorm],
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: async (configService: ConfigService) => (configService.get('typeorm'))
+      useFactory: async (configService: ConfigService) =>
+        configService.get('typeorm'),
     }),
     UsersModule,
     AuthModule,
   ],
-  controllers: [AppController, HealthController, AuthController, UserController],
+  controllers: [
+    AppController,
+    HealthController,
+    AuthController,
+    UserController,
+  ],
   providers: [HealthService, AuthService],
 })
-
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(HTTPLoggerInterceptor).forRoutes('*');
   }
 }
-

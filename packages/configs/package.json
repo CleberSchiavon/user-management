@@ -4,11 +4,22 @@
   "main": "index.js",
   "license": "MIT",
   "files": [
-    "eslint-preset.js"
+    "eslint-preset.js",
+    "eslint/library.js",
+    "eslint/react-internal.js",
+    "eslint/next.js",
+    "eslint/nest-api.js"
   ],
   "dependencies": {
     "eslint-config-next": "^13.4.12",
-    "eslint-config-prettier": "^8.9.0",
-    "eslint-plugin-react": "7.33.1"
+    "eslint-plugin-react": "7.33.1",
+    "@vercel/style-guide": "^5.2.0",
+    "eslint-config-turbo": "^1.12.4",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-only-warn": "^1.1.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "@typescript-eslint/parser": "^7.1.0",
+    "@typescript-eslint/eslint-plugin": "^7.1.0",
+    "typescript": "^5.3.3"
   }
 }

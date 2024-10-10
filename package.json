@@ -7,28 +7,96 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "turbo run build",
-    "dev": "nps run",
-    "dev:api": "nps run.api",
-    "dev:front": "nps run.web",
-    "test:api": "nps test.api",
-    "test:front": "nps test.web",
-    "test:watch-api": "nps test.watch.api",
-    "prepare": "nps prepare",
-    "prepare:api": "nps prepare.api",
-    "prepare:apiDocker": "nps prepare.apiDocker",
-    "prepare:web": "nps prepare.web",
-    "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "front:start": "turbo run start --filter=./apps/web/",
+    "front:build": "turbo run build --filter=./apps/web/",
+    "front:lint": "turbo run lint --filter=./apps/web/",
+    "front:dev": "turbo run dev --filter=./apps/web/",
+    "api:dev": "turbo run dev --filter=./apps/api/",
+    "api:test": "turbo run test --filter=./apps/api/",
+    "api:test-watch": "turbo run test:watch --filter=./apps/api/",
+    "test": "turbo run test",
+    "prepare-env": "bash ./scripts/prepare-env.sh",
+    "solidarity": "solidarity",
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "bash ./scripts/repo-lint.sh",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "audit:branch": "bash ./scripts/branch-audit.sh",
+    "husky:install": "bash ./scripts/husky.sh",
+    "clean-repo": "bash ./scripts/clean-repo.sh",
+    "changelog": "standard-version"
   },
+
   "devDependencies": {
+    "@commitlint/cli": "^17.6.3",
+    "@commitlint/config-conventional": "^17.6.3",
+    "solidarity": "^3.0.4",
     "nps": "^5.10.0",
-    "prettier": "^3.0.0",
-    "turbo": "1.10.12"
+    "husky": "^8.0.3",
+    "prettier": "^3.2.5",
+    "turbo": "latest",
+    "validate-branch-name": "^1.3.0",
+    "eslint": "^8.40.0",
+    "standard-version": "^9.5.0",
+    "lint-staged": "^13.2.2"
   },
   "engines": {
     "npm": ">=7.0.0",
     "node": ">=14.0.0"
   },
-  "packageManager": "yarn@1.22.17"
+  "packageManager": "yarn@1.22.17",
+  "standard-version": {
+    "standard-version": {
+      "types": [
+        {
+          "type": "rc",
+          "section": "Release"
+        },
+        {
+          "type": "feat",
+          "section": "Features"
+        },
+        {
+          "type": "fix",
+          "section": "Bug Fixes"
+        },
+        {
+          "type": "hotfix",
+          "section": "Bug Fixes"
+        },
+        {
+          "type": "ci",
+          "section": "CI"
+        },
+        {
+          "type": "chore",
+          "section": "Chores"
+        },
+        {
+          "type": "style",
+          "section": "Styles"
+        },
+        {
+          "type": "docs",
+          "section": "Documentação"
+        },
+        {
+          "type": "perf",
+          "section": "Melhoria de Perfomance"
+        },
+        {
+          "type": "refac",
+          "section": "Refatorações"
+        },
+        {
+          "type": "revert",
+          "section": "Reversal"
+        },
+        {
+          "type": "test",
+          "section": "Tests"
+        }
+      ]
+    }
+  }
 }
