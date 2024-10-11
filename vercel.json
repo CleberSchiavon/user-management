@@ -1,0 +1,31 @@
+{
+  "version": 2,
+  "github": {
+    "enabled": false
+  },
+  "builds": [
+    {
+      "src": "/apps/api/src/main.ts",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "/apps/web/.next/*",
+      "use": "@now/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/apps/api/src/main.ts",
+      "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD"]
+    }
+  ],
+  "env": {
+    "API_JWT_SECRET": "@API_JWT_SECRET",
+    "DB_DATABASE": "@DB_DATABASE",
+    "DB_HOST": "@DB_HOST",
+    "DB_PORT": "@DB_PORT",
+    "DB_USERNAME": "@DB_USERNAME",
+    "DB_PASSWORD": "@DB_PASSWORD"
+  }
+}
