@@ -12,6 +12,7 @@
     "front:lint": "turbo run lint --filter=./apps/web/",
     "front:dev": "turbo run dev --filter=./apps/web/",
     "api:dev": "turbo run dev --filter=./apps/api/",
+    "api:build": "turbo run build --filter=./apps/api/",
     "api:test": "turbo run test --filter=./apps/api/",
     "api:test-watch": "turbo run test:watch --filter=./apps/api/",
     "test": "turbo run test",
