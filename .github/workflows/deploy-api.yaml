@@ -42,4 +42,4 @@ jobs:
           npx nps prepare.ci.api
           npx nps build.ci.api
           npx nps test.ci.api || { echo 'Tests failed'; exit 1; }
-          cd out && vercel --prod --yes --token=$VERCEL_TOKEN --env API_JWT_SECRET=$API_JWT_SECRET --env DB_DATABASE=$DB_DATABASE --env DB_HOST=$DB_HOST --env DB_PORT=$DB_PORT --env DB_USERNAME=$DB_USERNAME --env DB_PASSWORD=$DB_PASSWORD || { echo 'Deployment failed'; exit 1; }
+          cd out && vercel --prod --yes --name user-management-api --token=$VERCEL_TOKEN --env API_JWT_SECRET=$API_JWT_SECRET --env DB_DATABASE=$DB_DATABASE --env DB_HOST=$DB_HOST --env DB_PORT=$DB_PORT --env DB_USERNAME=$DB_USERNAME --env DB_PASSWORD=$DB_PASSWORD || { echo 'Deployment failed'; exit 1; }
