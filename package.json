@@ -14,7 +14,6 @@
     "api:dev": "turbo run dev --filter=./apps/api/",
     "api:test": "turbo run test --filter=./apps/api/",
     "api:test-watch": "turbo run test:watch --filter=./apps/api/",
-    "api:prepare-deploy": "bash ./scripts/prepare-api-deploy.sh",
     "test": "turbo run test",
     "prepare-env": "bash ./scripts/prepare-env.sh",
     "env-check": "solidarity",
