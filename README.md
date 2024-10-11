@@ -97,7 +97,7 @@ yarn run env-check # Roda o Solidarity pra checar se seu ambiente dá match com 
 ```
 
 ```sh
-yarn run branch-check # Valida se o nome da sua branch dá match com o padrão da invillia
+yarn run branch-check # Valida se o nome da sua branch dá match com o padrão de branch
 ```
 
 ```sh
