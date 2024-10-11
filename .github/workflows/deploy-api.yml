@@ -34,7 +34,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t registry.fly.io/myapp:latest ./out/full/apps/api
+          docker build -t registry.fly.io/myapp:latest ./full/apps/api
 
       - name: Authenticate with Fly.io Docker registry
         run: |
