@@ -30,14 +30,26 @@ jobs:
 
       - name: Prune dependencies and prepare output
         run: |
-          npx turbo prune --scope=api --docker && cd out && yarn install --frozen-lockfile && yarn run api:build
+          npx turbo prune --scope=api && cd out && yarn install --frozen-lockfile && yarn run api:build
+
+      - name: Build Docker image
+        run: |
+          docker build -t registry.fly.io/myapp:latest ./out/full/apps/api
+
+      - name: Authenticate with Fly.io Docker registry
+        run: |
+          echo "${{ secrets.FLY_API_TOKEN }}" | docker login registry.fly.io --username myapp --password-stdin
+
+      - name: Push Docker image to Fly.io
+        run: |
+          docker push registry.fly.io/myapp:latest
 
       - name: Set up Flyctl
         uses: superfly/flyctl-actions/setup-flyctl@master
 
       - name: Deploy to Fly.io
-        working-directory: out/full/apps/api
+        working-directory: out/full/
         run: |
-          flyctl deploy --remote-only --config ./fly.toml || { echo 'Deployment failed'; exit 1; }
+          flyctl deploy --remote-only --config ./fly.toml --image registry.fly.io/myapp:latest || { echo 'Deployment failed'; exit 1; }
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
