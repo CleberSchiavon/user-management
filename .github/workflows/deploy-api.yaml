@@ -50,7 +50,6 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - run: yarn global add turbo
-      - run: npx nps prepare.ci.api
       - run: npx nps build.ci.api
       - run: npx nps test.ci.api
 
@@ -75,5 +74,6 @@ jobs:
           DB_USERNAME: ${{ secrets.DB_USERNAME }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         run: |
+          npx nps prepare.ci.api
           cd out
-          vercel --prod --yes --token=$VERCEL_TOKEN --env API_JWT_SECRET=$API_JWT_SECRET --env DB_DATABASE=$DB_DATABASE --env DB_HOST=$DB_HOST --env DB_PORT=$DB_PORT --env DB_USERNAME=$DB_USERNAME --env DB_PASSWORD=$DB_PASSWORD
+          vercel --name user-management-api --prod --yes --token=$VERCEL_TOKEN --env API_JWT_SECRET=$API_JWT_SECRET --env DB_DATABASE=$DB_DATABASE --env DB_HOST=$DB_HOST --env DB_PORT=$DB_PORT --env DB_USERNAME=$DB_USERNAME --env DB_PASSWORD=$DB_PASSWORD
