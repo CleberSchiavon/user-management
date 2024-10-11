@@ -76,4 +76,4 @@ jobs:
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         run: |
           cd apps/api
-          vercel --prod --confirm --env API_JWT_SECRET=$API_JWT_SECRET --env DB_DATABASE=$DB_DATABASE --env DB_HOST=$DB_HOST --env DB_PORT=$DB_PORT --env DB_USERNAME=$DB_USERNAME --env DB_PASSWORD=$DB_PASSWORD
+          vercel --prod --yes --env API_JWT_SECRET=$API_JWT_SECRET --env DB_DATABASE=$DB_DATABASE --env DB_HOST=$DB_HOST --env DB_PORT=$DB_PORT --env DB_USERNAME=$DB_USERNAME --env DB_PASSWORD=$DB_PASSWORD
