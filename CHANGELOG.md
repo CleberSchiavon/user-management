@@ -2,12 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [0.0.12](https://github.com/CleberSchiavon/user-management/compare/v0.0.11...v0.0.12) (2024-10-10)
+### [0.0.13](https://github.com/CleberSchiavon/user-management/compare/v0.0.12...v0.0.13) (2024-10-11)
 
 
 ### Documentação
 
-* **README.md:** adding Apps and Packages description ([e56a505](https://github.com/CleberSchiavon/user-management/commit/e56a5051059f34bc59863e3079b64788974f7a2b))
+* **README.md:** final version of README ([a627798](https://github.com/CleberSchiavon/user-management/commit/a62779830daed6b6aea14eceb1882154c59f250a))
+
+### [0.0.12](https://github.com/CleberSchiavon/user-management/compare/v0.0.11...v0.0.12) (2024-10-10)
+
+### Documentação
+
+- **README.md:** adding Apps and Packages description ([e56a505](https://github.com/CleberSchiavon/user-management/commit/e56a5051059f34bc59863e3079b64788974f7a2b))
 
 ### [0.0.11](https://github.com/CleberSchiavon/user-management/compare/v0.0.10...v0.0.11) (2024-10-10)
 
