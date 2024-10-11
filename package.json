@@ -15,6 +15,7 @@
     "api:build": "turbo run build --filter=./apps/api/",
     "api:test": "turbo run test --filter=./apps/api/",
     "api:test-watch": "turbo run test:watch --filter=./apps/api/",
+    "api:prune": "turbo prune api --docker",
     "test": "turbo run test",
     "prepare-env": "bash ./scripts/prepare-env.sh",
     "env-check": "solidarity",

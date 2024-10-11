@@ -8,8 +8,6 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
 
-  app.enableCors();
-
   const config = new DocumentBuilder()
     .setTitle('User Management API')
     .setDescription('Api Docs for User Management')
@@ -19,7 +17,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('swagger', app, document);
 
-  const PORT = 5002;
+  const PORT = 8080;
 
   await app.listen(PORT);
 

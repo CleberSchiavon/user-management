@@ -1,0 +1,48 @@
+name: deploy-api
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - "apps/api/**"
+  pull_request:
+    branches: [master]
+    paths:
+      - "apps/api/**"
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+
+      - name: Install dependencies
+        run: |
+          yarn install --frozen-lockfile
+
+      - name: Build application
+        run: |
+          yarn build
+
+      - name: Prune development dependencies
+        run: |
+          npm prune --production
+
+      - name: Install Fly.io CLI
+        run: |
+          curl -L https://fly.io/install.sh | sh
+          echo 'export PATH="$HOME/.fly/bin:$PATH"' >> $GITHUB_ENV
+
+      - name: Deploy to Fly.io
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+        run: |
+          fly deploy --remote-only --config apps/api/fly.toml || { echo 'Deployment failed'; exit 1; }
