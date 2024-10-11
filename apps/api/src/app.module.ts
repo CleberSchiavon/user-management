@@ -12,12 +12,18 @@ import { HealthService } from './modules/health/health.service';
 import typeorm from './config/typeorm';
 import { UserController } from './modules/users/user.controller';
 import { HTTPLoggerInterceptor } from './middleware/http.logger.middleware';
+import { join } from 'path';
+import { ServeStaticModule } from '@nestjs/serve-static';
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
       validationSchema: validationSchemaForEnv,
       load: [typeorm],
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '../..', 'web', '.next'),
+      exclude: ['/api/*'],
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
