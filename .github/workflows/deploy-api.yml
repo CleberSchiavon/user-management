@@ -30,11 +30,11 @@ jobs:
 
       - name: Prune dependencies and prepare output
         run: |
-          npx turbo prune --scope=api && cd out && yarn install --frozen-lockfile && yarn run api:build
+          npx turbo prune --scope=api --docker && cd out && yarn install --frozen-lockfile && yarn run api:build
 
       - name: Build Docker image
         run: |
-          docker build -t registry.fly.io/myapp:latest ./full/apps/api
+          docker build -t registry.fly.io/myapp:latest ./out/full/apps/api
 
       - name: Authenticate with Fly.io Docker registry
         run: |
